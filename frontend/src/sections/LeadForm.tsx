@@ -58,17 +58,17 @@ export default function LeadForm() {
   return (
     <section id="lead" className="py-20 sm:py-24 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 rounded-3xl p-8 sm:p-12 shadow-2xl">
+        <div className="grid lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 rounded-3xl p-5 sm:p-8 lg:p-12 shadow-2xl">
           <div className="text-white">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Birinchi dars — bepul</h2>
             <p className="text-white/80 text-lg mb-6">
-              Arizani qoldiring, ustoz Hasan shaxsan oʻzi bogʻlanadi: bilim darajangizni aniqlab, sizga mos guruhni
-              tanlab beradi. Hech qanday majburiyat yoʻq.
+              Arizani qoldiring, ustoz Hasan shaxsan oʻzi bogʻlanadi: bilim darajangizni aniqlab, sizga mos onlayn
+              guruhni tanlab beradi va Zoom havolasini yuboradi. Hech qanday majburiyat yoʻq.
             </p>
             <ul className="space-y-3 mb-8">
               {[
                 '15 daqiqa ichida javob beramiz',
-                'Bepul sinov darsi — toʻliq 1,5 soat',
+                'Bepul sinov darsi — Zoomda, toʻliq 1,5 soat',
                 'Shaxsiy oʻquv rejasi tuziladi',
                 'Guruhlar 5-8 kishidan, joylar cheklangan',
               ].map((item) => (
@@ -84,7 +84,7 @@ export default function LeadForm() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl">
+          <div className="bg-white rounded-2xl p-5 sm:p-8 shadow-xl">
             {sent ? (
               <div className="text-center py-8">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">

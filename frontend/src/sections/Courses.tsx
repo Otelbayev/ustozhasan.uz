@@ -35,8 +35,8 @@ export default function Courses() {
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Nimalarni oʻrganasiz?</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            6 ta modul, jami {totalLessons} ta amaliy dars. Har bir mavzu darsning oʻzida kompyuterda bajariladi —
-            uyga faqat mustahkamlash mashqlari beriladi.
+            6 ta modul, jami {totalLessons} ta jonli onlayn dars. Har bir mavzu darsning oʻzida oʻz kompyuteringizda
+            bajariladi — uyga faqat mustahkamlash mashqlari beriladi.
           </p>
         </div>
 

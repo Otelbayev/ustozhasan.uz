@@ -1,6 +1,7 @@
-# ustozhasan.uz — Kompyuter savodxonligi kurslari
+# ustozhasan.uz — Onlayn kompyuter savodxonligi kursi
 
 Hasan Abdullayev (Ustoz Hasan) uchun bir sahifali sotuv sayti (landing page).
+Kurs formati: **100% onlayn (Zoom orqali), O'zbekiston bo'ylab** — saytdagi barcha matnlar shunga moslangan.
 Texnologiyalar: **React 19 + TypeScript + Vite + Tailwind CSS + shadcn/ui**.
 
 ## Ishga tushirish
@@ -18,6 +19,7 @@ npm run preview  # yigʻilgan versiyani tekshirish
 | --- | --- | --- |
 | Navigatsiya | `src/sections/Navbar.tsx` | Yuqoridagi menyu + telefon tugmasi |
 | Hero | `src/sections/Hero.tsx` | Asosiy sarlavha, statistika, CTA |
+| Hero formasi | `src/sections/HeroForm.tsx` | Qisqa ariza: F.I.SH. + telefon |
 | Muammolar | `src/sections/Problems.tsx` | "Bu holatlar sizga tanishmi?" |
 | Ustoz haqida | `src/sections/About.tsx` | Hasan Abdullayev, suratlar, ijtimoiy tarmoqlar |
 | Kurslar | `src/sections/Courses.tsx` | 6 ta modul, 44 ta dars |
@@ -25,32 +27,63 @@ npm run preview  # yigʻilgan versiyani tekshirish
 | Kimlar uchun | `src/sections/Audience.tsx` | Maqsadli auditoriya |
 | Jarayon | `src/sections/Process.tsx` | 4 qadam |
 | Fikrlar | `src/sections/Testimonials.tsx` | O'quvchilar sharhlari |
-| Narxlar | `src/sections/Pricing.tsx` | 3 ta tarif |
-| Ariza | `src/sections/LeadForm.tsx` | Forma → Telegramga tayyor xabar |
+| Ariza | `src/sections/LeadForm.tsx` | To'liq ariza formasi → Telegram bot |
 | Savol-javob | `src/sections/Faq.tsx` | FAQ akkordeon |
 | Aloqa | `src/sections/Contact.tsx` | Telefon / Telegram / Instagram |
 | Footer | `src/sections/Footer.tsx` | Pastki qism |
 | Suzuvchi tugmalar | `src/sections/FloatingCta.tsx` | Doimiy CTA (mobil + desktop) |
 
-## Matn va narxlarni o'zgartirish
+## Matnlarni o'zgartirish
 
 Deyarli barcha matnlar bitta faylda: **`src/data/site.ts`**
 
-- `SITE` — telefon, Telegram, Instagram, shahar
+- `SITE` — telefon, Telegram, Instagram, kurs formati (`format`) va hudud (`area`)
 - `COURSES` — kurs modullari va mavzular
-- `PLANS` — **narxlar** (`450 000`, `900 000` — real narxlaringizga almashtiring)
+- `BENEFITS`, `AUDIENCE`, `PROCESS`, `PROBLEMS` — sotuv bloklari matni
 - `TESTIMONIALS` — o'quvchilar fikrlari (real fikrlar bilan almashtirish tavsiya etiladi)
 - `FAQ` — savol-javoblar
+- `NAV_LINKS` — yuqoridagi menyu
+
+**Narxlar saytda ko'rsatilmaydi** — narx bo'limi butunlay olib tashlangan, o'quvchi narxni
+telefon yoki Telegram orqali so'raydi.
 
 > ⚠️ **Muhim:** `FAQ` ni o'zgartirsangiz, `index.html` dagi `FAQPage` structured data blokini ham
 > bir xil qilib yangilang — Google'da savol-javob ko'rinishi shunga bog'liq.
 
-## Ariza formasi qanday ishlaydi
+## Ariza formalari va Telegram bot
 
-Backend yo'q. Foydalanuvchi formani to'ldirgach, tayyor xabar bilan
-`https://t.me/Ustoz_Hasan` chati ochiladi — o'quvchi faqat "yuborish" tugmasini bosadi.
-Kelajakda backend qo'shilsa, `src/sections/LeadForm.tsx` dagi `handleSubmit` ichiga
-`fetch()` so'rovini qo'shish kifoya.
+Saytda 2 ta forma bor va **ikkalasi ham arizani Telegram botga yuboradi**:
+
+1. **Hero formasi** (`HeroForm.tsx`) — F.I.SH. + telefon
+2. **Asosiy forma** (`LeadForm.tsx`) — F.I.SH. + telefon + yo'nalish + qulay vaqt
+
+Yuborish mantig'i: `src/lib/telegram.ts` (`sendLeadToTelegram`).
+Bot: **@ustozhasan_bot**, xabar `chat_id: 1105787891` ga boradi.
+
+### ❗ Ishga tushirishdan oldin — bir marta bajarilishi shart
+
+Telegram'da **@ustozhasan_bot** ni oching va **/start** (Boshlash) tugmasini bosing.
+Bosilmasa, Telegram `chat not found` xatosini qaytaradi va arizalar kelmaydi.
+(Bir necha kishi ariza olishi kerak bo'lsa: guruh yarating, botni guruhga qo'shing va
+`VITE_TELEGRAM_CHAT_ID` ga guruh id sini yozing.)
+
+Agar bot javob bermasa, forma o'quvchiga zaxira tugma ko'rsatadi — ariza matni bilan
+Telegram chati ochiladi, ya'ni murojaat yo'qolmaydi.
+
+### ⚠️ Xavfsizlik haqida
+
+Bot tokeni frontend kodida turadi, ya'ni **saytga kirgan har kim uni ko'ra oladi**
+(brauzer → Sources → `assets/*.js`) va bot nomidan xabar yubora oladi.
+Tavsiya: tokenni serverda saqlash (kichik backend yoki Cloudflare Worker) va saytdan
+faqat o'sha manzilga so'rov yuborish. Shunda `src/lib/telegram.ts` dagi `fetch` manzilini
+almashtirish kifoya.
+
+Tokenni kod ichidan olib tashlash uchun `.env` fayl yarating (`.env.example` dan nusxa oling):
+
+```
+VITE_TELEGRAM_BOT_TOKEN=...
+VITE_TELEGRAM_CHAT_ID=...
+```
 
 ## SEO
 
@@ -60,9 +93,13 @@ Bajarilgan ishlar:
 - Structured data (JSON-LD): `EducationalOrganization`, `Person`, `WebSite`, `Course`, `FAQPage`
 - `public/sitemap.xml` — image sitemap bilan (3 ta rasm sarlavha va izohi bilan)
 - `public/robots.txt` — Googlebot-Image ruxsati va sitemap havolasi
+- Google Rasmlar uchun: har bir rasm `ImageObject` sifatida belgilangan va
+  `Person` (Hasan Abdullayev) bilan bog'langan, `WebPage.primaryImageOfPage` ko'rsatilgan,
+  rasm nomi/`alt`/`title`/`figcaption` da to'liq ism bor, portret `preload` qilinadi,
+  JS ishlamaydigan robotlar uchun `<noscript>` ichida rasmlar va matn takrorlangan
 - SEO'ga mos rasm nomlari va `alt` matnlari:
   - `hasan-abdullayev-kompyuter-savodxonligi-oqituvchisi.jpg`
-  - `ustoz-hasan-kompyuter-kurslari-toshkent.jpg`
+  - `ustoz-hasan-onlayn-kompyuter-kurslari.jpg`
   - `ustoz-hasan-kompyuter-savodxonligi-darslari.jpg`
 - Semantik HTML: `header` / `main` / `section` / `footer`, bitta `h1`, `lang="uz"`
 - `site.webmanifest`, SVG favicon, 404 sahifasi (`noindex`)

@@ -16,7 +16,8 @@ export default function Footer() {
               <span className="font-bold text-xl">{SITE.name}</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Kompyuter savodxonligi kurslari — 0 dan professional darajagacha. {SITE.teacher}, {SITE.city}.
+              Onlayn kompyuter savodxonligi kurslari — 0 dan professional darajagacha. {SITE.teacher},{' '}
+              {SITE.area}.
             </p>
             <div className="flex gap-3">
               <a
@@ -101,7 +102,8 @@ export default function Footer() {
                   Instagram: {SITE.instagramUser}
                 </a>
               </li>
-              <li>{SITE.city}</li>
+              <li>{SITE.format}</li>
+              <li>{SITE.area}</li>
               <li>Dushanba - Shanba, 09:00 - 21:00</li>
             </ul>
           </div>

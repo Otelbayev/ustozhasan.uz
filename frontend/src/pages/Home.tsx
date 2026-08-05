@@ -7,7 +7,6 @@ import Benefits from '@/sections/Benefits'
 import Audience from '@/sections/Audience'
 import Process from '@/sections/Process'
 import Testimonials from '@/sections/Testimonials'
-import Pricing from '@/sections/Pricing'
 import LeadForm from '@/sections/LeadForm'
 import Faq from '@/sections/Faq'
 import Contact from '@/sections/Contact'
@@ -16,7 +15,8 @@ import FloatingCta from '@/sections/FloatingCta'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    // pb-20: mobil qurilmadagi pastki doimiy CTA panel kontentni yopib qolmasligi uchun
+    <div className="min-h-screen bg-white overflow-x-hidden pb-20 sm:pb-0">
       <Navbar />
       <main>
         <Hero />
@@ -27,7 +27,6 @@ export default function Home() {
         <Audience />
         <Process />
         <Testimonials />
-        <Pricing />
         <LeadForm />
         <Faq />
         <Contact />

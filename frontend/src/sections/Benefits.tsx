@@ -1,13 +1,13 @@
-import { Award, Clock, GraduationCap, Laptop, Repeat, Users, type LucideIcon } from 'lucide-react'
+import { Award, Clock, Globe, Repeat, Users, Video, type LucideIcon } from 'lucide-react'
 import { BENEFITS } from '@/data/site'
 
 const ICONS: Record<string, LucideIcon> = {
+  video: Video,
+  globe: Globe,
   users: Users,
   clock: Clock,
-  award: Award,
-  graduation: GraduationCap,
-  laptop: Laptop,
   repeat: Repeat,
+  award: Award,
 }
 
 export default function Benefits() {
@@ -26,7 +26,8 @@ export default function Benefits() {
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Nima uchun aynan Ustoz Hasan?</h2>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Kurs davomida siz yolgʻiz qolmaysiz — har bir detal oʻquvchi qulayligi uchun oʻylangan.
+            Darslar 100% onlayn, jonli va amaliy. Kurs davomida siz yolgʻiz qolmaysiz — har bir detal
+            oʻquvchi qulayligi uchun oʻylangan.
           </p>
         </div>
 

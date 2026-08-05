@@ -1,4 +1,4 @@
-import { CheckCircle, MessageCircle, Phone, Star } from 'lucide-react'
+import { CheckCircle, MessageCircle, Phone, Star, Video } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import HeroForm from './HeroForm'
 import { IMAGES, SITE, STATS } from '@/data/site'
@@ -21,46 +21,53 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-10 xl:gap-16 items-center">
-          <div className="text-center lg:text-left">
-            {/* Ustoz surati va ismi — bosh sahifada ham koʻrinadi (Google Rasmlar uchun muhim) */}
-            <div className="inline-flex items-center gap-3 mb-6">
-              <img
-                src={IMAGES.teacher}
-                alt="Hasan Abdullayev — kompyuter savodxonligi oʻqituvchisi, Toshkent"
-                title="Hasan Abdullayev — kompyuter savodxonligi oʻqituvchisi"
-                width={1271}
-                height={1280}
-                fetchPriority="high"
-                className="w-16 h-16 rounded-full object-cover object-top border-2 border-white/40 shadow-lg"
-              />
-              <span className="text-left">
-                <span className="block text-white font-semibold">{SITE.teacher}</span>
-                <span className="block text-white/60 text-sm">{SITE.role}</span>
+        {/*
+          Mobil tartib: 1) rasm, 2) matn, 3) forma.
+          Katta ekranda: chapda matn, oʻngda rasm va uning ostida forma.
+        */}
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-16 items-center">
+          <figure className="order-1 lg:order-none lg:col-start-2 lg:row-start-1 relative w-full max-w-[15rem] sm:max-w-sm mx-auto">
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-[2.5rem] opacity-30 blur-2xl" />
+            <img
+              src={IMAGES.teacher}
+              alt="Hasan Abdullayev — onlayn kompyuter savodxonligi oʻqituvchisi"
+              title="Hasan Abdullayev — kompyuter savodxonligi oʻqituvchisi"
+              width={1271}
+              height={1280}
+              fetchPriority="high"
+              className="relative rounded-[2rem] shadow-2xl w-full aspect-square object-cover object-top bg-white/10"
+            />
+            <figcaption className="relative mt-3 text-center text-white/70 text-sm">
+              <span className="font-semibold text-white">{SITE.teacher}</span> — {SITE.role}
+            </figcaption>
+          </figure>
+
+          <div className="order-2 lg:order-none lg:col-start-1 lg:row-start-1 lg:row-span-2 text-center lg:text-left">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
+              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/90 text-sm border border-white/20">
+                <Video className="w-4 h-4 text-blue-300" />
+                100% onlayn kurs
+              </span>
+              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/90 text-sm border border-white/20">
+                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                3+ yil tajriba | 500+ bitiruvchi
               </span>
             </div>
 
-            <div className="flex justify-center lg:justify-start">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/90 text-sm mb-6 border border-white/20">
-                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                <span>3+ yillik tajriba | 500+ bitiruvchi</span>
-              </div>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
-              Kompyuter Savodxonligi
+            <h1 className="text-3xl sm:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
+              Onlayn Kompyuter Savodxonligi
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 0 dan Professionalgacha
               </span>
             </h1>
 
-            <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-base sm:text-lg text-white/80 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               {SITE.teacher} bilan Word, Excel, PowerPoint va internet xavfsizligini 2 oyda oʻrganing.
-              Hech qanday oldingi bilim talab qilinmaydi — hammasi 0 dan boshlanadi.
+              Darslar Zoom orqali jonli oʻtadi — {SITE.area}, uydan chiqmasdan.
             </p>
 
             <ul className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 mb-8 text-white/80">
-              {['Birinchi dars bepul', 'Kichik guruhlar', 'Sertifikat beriladi'].map((item) => (
+              {['Birinchi dars bepul', 'Jonli onlayn darslar', 'Dars yozuvlari beriladi'].map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
                   <span>{item}</span>
@@ -68,10 +75,10 @@ export default function Hero() {
               ))}
             </ul>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-10">
               <Button
                 asChild
-                className="bg-white text-blue-700 hover:bg-gray-100 px-8 py-6 text-lg rounded-xl shadow-lg transition-all hover:scale-105"
+                className="bg-white text-blue-700 hover:bg-gray-100 px-6 sm:px-8 py-6 text-base sm:text-lg rounded-xl shadow-lg transition-all hover:scale-105"
               >
                 <a href={`tel:${SITE.phoneRaw}`}>
                   <Phone className="w-5 h-5 mr-2" />
@@ -81,7 +88,7 @@ export default function Hero() {
               <Button
                 asChild
                 variant="outline"
-                className="border-white/30 bg-white/5 text-white hover:bg-white/15 hover:text-white px-8 py-6 text-lg rounded-xl backdrop-blur-sm"
+                className="border-white/30 bg-white/5 text-white hover:bg-white/15 hover:text-white px-6 sm:px-8 py-6 text-base sm:text-lg rounded-xl backdrop-blur-sm"
               >
                 <a href={SITE.telegram} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5 mr-2" />
@@ -92,16 +99,15 @@ export default function Hero() {
 
             <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-lg mx-auto lg:mx-0">
               {STATS.map((stat) => (
-                <div key={stat.label} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                  <div className="text-2xl sm:text-3xl font-bold text-white">{stat.num}</div>
+                <div key={stat.label} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20">
+                  <div className="text-xl sm:text-3xl font-bold text-white">{stat.num}</div>
                   <div className="text-white/60 text-xs sm:text-sm">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Qisqa ariza formasi */}
-          <div className="lg:pl-4">
+          <div className="order-3 lg:order-none lg:col-start-2 lg:row-start-2">
             <HeroForm />
           </div>
         </div>

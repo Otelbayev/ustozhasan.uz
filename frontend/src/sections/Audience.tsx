@@ -12,7 +12,8 @@ export default function Audience() {
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Bu kurs sizga mos keladimi?</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Yoshi, kasbi va bilim darajasidan qatʼi nazar — dastur har bir oʻquvchiga moslashtiriladi.
+            Yoshi, kasbi, yashash hududi va bilim darajasidan qatʼi nazar — darslar onlayn, dastur esa har bir
+            oʻquvchiga moslashtiriladi.
           </p>
         </div>
 

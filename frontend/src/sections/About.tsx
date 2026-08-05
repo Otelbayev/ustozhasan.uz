@@ -5,7 +5,7 @@ const FACTS = [
   { label: 'Tajriba', value: '3+ yil' },
   { label: 'Oʻquvchilar', value: '500+' },
   { label: 'Modullar', value: '6 ta' },
-  { label: 'Sertifikat', value: 'Beriladi' },
+  { label: 'Format', value: 'Onlayn' },
 ]
 
 export default function About() {
@@ -24,7 +24,7 @@ export default function About() {
               <figure className="col-span-2 row-span-2">
                 <img
                   src={IMAGES.teacher}
-                  alt="Hasan Abdullayev — kompyuter savodxonligi oʻqituvchisi, Toshkent"
+                  alt="Hasan Abdullayev — onlayn kompyuter savodxonligi oʻqituvchisi"
                   title="Hasan Abdullayev — kompyuter savodxonligi oʻqituvchisi"
                   width={1271}
                   height={1280}
@@ -38,14 +38,16 @@ export default function About() {
               <figure>
                 <img
                   src={IMAGES.courses}
-                  alt="Hasan Abdullayev kompyuter kurslari — Toshkent shahri"
-                  title="Ustoz Hasan kompyuter kurslari"
+                  alt="Hasan Abdullayev onlayn kompyuter kurslari — Oʻzbekiston boʻylab"
+                  title="Ustoz Hasan onlayn kompyuter kurslari"
                   width={640}
                   height={640}
                   loading="lazy"
                   className="rounded-2xl shadow-lg w-full aspect-square object-cover object-top bg-gray-100"
                 />
-                <figcaption className="sr-only">Ustoz Hasan Abdullayev kompyuter kurslari, Toshkent</figcaption>
+                <figcaption className="sr-only">
+                  Ustoz Hasan Abdullayev onlayn kompyuter kurslari, Oʻzbekiston boʻylab
+                </figcaption>
               </figure>
               <figure>
                 <img
@@ -80,8 +82,9 @@ export default function About() {
             </p>
 
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              Mening uslubim oddiy: hech qanday murakkab atama yoʻq, har bir mavzu darsning oʻzida kompyuter oldida
-              amalda bajariladi. Tushunmagan joyingizni istagancha qayta soʻrashingiz mumkin — men shoshiltirmayman.
+              Darslarim <strong>100% onlayn</strong> — Zoom orqali jonli oʻtadi. Men ekranimni koʻrsatib
+              tushuntiraman, siz esa oʻz kompyuteringizda birga bajarasiz. Hech qanday murakkab atama yoʻq,
+              tushunmagan joyingizni istagancha qayta soʻrashingiz mumkin — men shoshiltirmayman.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">

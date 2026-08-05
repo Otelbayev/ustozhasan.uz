@@ -84,7 +84,7 @@ export default function Navbar() {
 
         {/* Mobil menyu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-2 bg-white rounded-2xl shadow-xl p-3">
+          <div className="lg:hidden mt-4 pb-2 bg-white rounded-2xl shadow-xl p-3 max-h-[70vh] overflow-y-auto">
             {NAV_LINKS.map((item) => (
               <button
                 key={item.id}

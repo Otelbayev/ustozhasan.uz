@@ -1,6 +1,8 @@
 /**
  * Sayt boʻyicha barcha matn va aloqa maʼlumotlari shu yerda.
- * Narx, telefon yoki dars soatlarini oʻzgartirish uchun faqat shu faylni tahrirlang.
+ * Telefon, dars soatlari yoki matnlarni oʻzgartirish uchun faqat shu faylni tahrirlang.
+ *
+ * Kurs formati: 100% ONLAYN (Zoom orqali) — Oʻzbekistonning istalgan nuqtasidan.
  */
 
 export const SITE = {
@@ -8,7 +10,8 @@ export const SITE = {
   name: 'Ustoz Hasan',
   teacher: 'Hasan Abdullayev',
   role: 'Kompyuter savodxonligi oʻqituvchisi',
-  city: 'Toshkent shahri',
+  format: '100% onlayn (Zoom orqali)',
+  area: 'Oʻzbekiston boʻylab',
   phone: '+998 93 305 56 35',
   phoneRaw: '+998933055635',
   telegram: 'https://t.me/Ustoz_Hasan',
@@ -20,7 +23,7 @@ export const SITE = {
 export const IMAGES = {
   teacher: '/images/hasan-abdullayev-kompyuter-savodxonligi-oqituvchisi.jpg',
   lesson: '/images/ustoz-hasan-kompyuter-savodxonligi-darslari.jpg',
-  courses: '/images/ustoz-hasan-kompyuter-kurslari-toshkent.jpg',
+  courses: '/images/ustoz-hasan-onlayn-kompyuter-kurslari.jpg',
 } as const
 
 export const STATS = [
@@ -67,8 +70,8 @@ export const COURSES = [
   },
   {
     icon: 'message',
-    title: 'Email va Onlayn Aloqa',
-    desc: 'Gmail, Telegram, Zoom va Google Docs — zamonaviy ish yuritish uchun zarur dasturlar.',
+    title: 'Onlayn Ish Yuritish',
+    desc: 'Gmail, Telegram, Zoom va Google Docs — masofadan ishlash uchun zarur dasturlar.',
     duration: '4 ta dars',
     topics: ['Gmail bilan ishlash', 'Telegram imkoniyatlari', 'Zoom uchrashuvlari', 'Google Docs'],
   },
@@ -80,14 +83,24 @@ export const PROBLEMS = [
   'Ish eʼlonlarida “kompyuter savodxonligi talab etiladi” degan qatorni koʻrib, ortga chekinasiz',
   'Telefon va internetdagi firibgarlardan choʻchiysiz',
   'Farzandingizga maktab vazifasida yordam bera olmaysiz',
-  'Oʻrganmoqchisiz, lekin qayerdan boshlashni bilmaysiz',
+  'Kursga borishga vaqt ham, imkon ham yoʻq — yashash joyingizda bunday kurs yoʻq',
 ] as const
 
 export const BENEFITS = [
   {
+    icon: 'video',
+    title: '100% Onlayn',
+    desc: 'Darslar Zoom orqali jonli oʻtadi. Uydan chiqmasdan, yoʻlga vaqt sarflamasdan oʻqiysiz.',
+  },
+  {
+    icon: 'globe',
+    title: 'Istalgan Hududdan',
+    desc: 'Toshkent, viloyat yoki chet el — internet boʻlsa, darsga qoʻshilasiz.',
+  },
+  {
     icon: 'users',
     title: 'Kichik Guruhlar',
-    desc: 'Bir guruhda 5-8 kishi. Har bir oʻquvchiga alohida eʼtibor va yordam.',
+    desc: 'Bir guruhda 5-8 kishi. Jonli darsda savol berib, javob olasiz.',
   },
   {
     icon: 'clock',
@@ -95,24 +108,14 @@ export const BENEFITS = [
     desc: 'Ertalabki, kunduzgi va kechki guruhlar. Ishdan keyin ham ulgurasiz.',
   },
   {
+    icon: 'repeat',
+    title: 'Dars Yozuvlari',
+    desc: 'Har bir dars yozib olinadi — darsni qoldirsangiz ham hech narsa yoʻqotmaysiz.',
+  },
+  {
     icon: 'award',
     title: 'Sertifikat',
-    desc: 'Kursni tugatgan har bir oʻquvchiga sertifikat topshiriladi.',
-  },
-  {
-    icon: 'graduation',
-    title: '3+ Yillik Tajriba',
-    desc: 'Hasan Abdullayev 500 dan ortiq oʻquvchini 0 dan oʻqitib chiqargan.',
-  },
-  {
-    icon: 'laptop',
-    title: 'Amaliy Mashqlar',
-    desc: 'Har bir dars kompyuter oldida amaliy mashq bilan mustahkamlanadi.',
-  },
-  {
-    icon: 'repeat',
-    title: 'Cheksiz Takrorlash',
-    desc: 'Tushunmagan mavzuingizni bepul qayta tinglash imkoniyati bor.',
+    desc: 'Kursni tugatgan har bir oʻquvchiga elektron sertifikat topshiriladi.',
   },
 ] as const
 
@@ -130,12 +133,12 @@ export const AUDIENCE = [
     desc: 'Mustaqil ish, referat va taqdimotlarni professional darajada tayyorlang.',
   },
   {
-    title: 'Tadbirkorlar',
-    desc: 'Savdo hisobi, mijozlar bazasi va moliyaviy nazoratni Excelda yuriting.',
+    title: 'Viloyatdagilar',
+    desc: 'Yaqin atrofda kurs yoʻqmi? Darslar onlayn — uyingizdan turib oʻqiysiz.',
   },
   {
     title: 'Uy bekalari',
-    desc: 'Internet, onlayn xaridlar va farzandingizning maktab vazifalariga ishonch bilan yondashing.',
+    desc: 'Uy ishlaridan ajralmasdan, oʻzingizga qulay vaqtdagi guruhda oʻqing.',
   },
   {
     title: '50+ yoshdagilar',
@@ -144,10 +147,10 @@ export const AUDIENCE = [
 ] as const
 
 export const PROCESS = [
-  { step: '01', title: 'Ariza qoldiring', desc: 'Telefon yoki Telegram orqali bogʻlaning — 15 daqiqada javob beramiz.' },
-  { step: '02', title: 'Bepul sinov darsi', desc: 'Birinchi darsga bepul qatnashib, uslub sizga mos kelishini koʻrasiz.' },
-  { step: '03', title: 'Amaliy oʻqish', desc: '2 oy davomida har bir mavzuni kompyuter oldida amalda bajarasiz.' },
-  { step: '04', title: 'Sertifikat oling', desc: 'Yakuniy amaliy imtihondan soʻng sertifikatga ega boʻlasiz.' },
+  { step: '01', title: 'Ariza qoldiring', desc: 'Saytdagi forma yoki telefon orqali bogʻlaning — tez orada javob beramiz.' },
+  { step: '02', title: 'Bepul sinov darsi', desc: 'Zoom havolasini olasiz va birinchi darsga bepul qoʻshilasiz.' },
+  { step: '03', title: 'Onlayn amaliyot', desc: '2 oy davomida jonli darslarda mavzuni oʻz kompyuteringizda bajarasiz.' },
+  { step: '04', title: 'Sertifikat oling', desc: 'Yakuniy amaliy imtihondan soʻng elektron sertifikatga ega boʻlasiz.' },
 ] as const
 
 export const TESTIMONIALS = [
@@ -160,13 +163,13 @@ export const TESTIMONIALS = [
   {
     name: 'Jamshid Karimov',
     role: 'Talaba, 20 yosh',
-    text: 'Word va PowerPointda taqdimot tayyorlashni oʻrgandim. Mustaqil ishlarim uchun endi hech kimga pul toʻlamayman. Tavsiya qilaman!',
+    text: 'Word va PowerPointda taqdimot tayyorlashni oʻrgandim. Darslar onlayn boʻlgani uchun universitetdan keyin ham bemalol ulgurdim.',
     stars: 5,
   },
   {
     name: 'Nodira Tursunova',
     role: 'Uy bekasi, 41 yosh',
-    text: 'Kompyuterdan qoʻrqib yurardim. Endi bolalarimga vazifada yordam beraman, internetdan xavfsiz foydalanaman. Rahmat, Ustoz Hasan!',
+    text: 'Kompyuterdan qoʻrqib yurardim. Uydan chiqmasdan oʻqidim — endi bolalarimga vazifada yordam beraman. Rahmat, Ustoz Hasan!',
     stars: 5,
   },
   {
@@ -177,8 +180,8 @@ export const TESTIMONIALS = [
   },
   {
     name: 'Dilshoda Yoʻldosheva',
-    role: 'Oʻqituvchi, 46 yosh',
-    text: 'Elektron jurnal va taqdimotlar bilan ishlash endi menga oson. Yoshim katta boʻlsa ham hech qanday qiyinchilik boʻlmadi.',
+    role: 'Oʻqituvchi, Samarqand',
+    text: 'Bizning tumanda bunday kurs yoʻq edi. Onlayn oʻqidim, dars yozuvlarini qayta koʻrib mustahkamladim. Juda qulay.',
     stars: 5,
   },
   {
@@ -189,91 +192,46 @@ export const TESTIMONIALS = [
   },
 ] as const
 
-/**
- * Tariflar. Narxlar saytda koʻrsatilmaydi — `price: null` boʻlgan tarifda
- * narx oʻrniga telefon raqam chiqadi ("narx uchun qoʻngʻiroq qiling").
- */
-export const PLANS = [
-  {
-    name: 'Sinov darsi',
-    price: 'BEPUL',
-    period: '1 ta dars',
-    desc: 'Avval koʻring, keyin qaror qiling',
-    features: [
-      'Toʻliq 1,5 soatlik amaliy dars',
-      'Guruh va uslub bilan tanishuv',
-      'Bilim darajangizni aniqlash',
-      'Shaxsiy oʻquv rejasi',
-    ],
-    cta: 'Bepul darsga yozilish',
-    highlighted: false,
-  },
-  {
-    name: 'Toʻliq kurs',
-    price: null,
-    period: 'Narx boʻyicha qoʻngʻiroq qiling',
-    desc: 'Eng koʻp tanlanadigan tarif',
-    features: [
-      'Barcha 6 ta modul (44 ta dars)',
-      'Haftasiga 3 marta, 1,5 soatdan',
-      'Kichik guruh — 5-8 kishi',
-      'Darslik va amaliy topshiriqlar',
-      'Telegram guruhda savol-javob',
-      'Yakunda sertifikat',
-    ],
-    cta: 'Kursga yozilish',
-    highlighted: true,
-  },
-  {
-    name: 'Individual',
-    price: null,
-    period: 'Narx boʻyicha qoʻngʻiroq qiling',
-    desc: 'Faqat siz va ustoz',
-    features: [
-      'Birga-bir shaxsiy darslar',
-      'Dars vaqtini oʻzingiz tanlaysiz',
-      'Sizga kerakli mavzular boʻyicha',
-      'Tezlashtirilgan dastur',
-      'Dars oraligʻida ham qoʻllab-quvvatlash',
-      'Yakunda sertifikat',
-    ],
-    cta: 'Individual dars',
-    highlighted: false,
-  },
-] as const
-
 export const FAQ = [
   {
     q: 'Kompyuterni umuman bilmasam ham kursga qoʻshila olamanmi?',
     a: 'Ha, albatta. Kurs 0 darajadan boshlanadi. Kompyuterni yoqishdan tortib, hujjat tayyorlashgacha bosqichma-bosqich oʻrgatiladi.',
   },
   {
+    q: 'Darslar qanday oʻtiladi?',
+    a: 'Barcha darslar 100% onlayn — Zoom orqali jonli oʻtadi. Ustoz ekranini koʻrsatib tushuntiradi, siz esa oʻz kompyuteringizda birga bajarasiz va istalgan payt savol berasiz.',
+  },
+  {
     q: 'Kurs qancha davom etadi?',
-    a: 'Toʻliq kompyuter savodxonligi kursi 2 oy davom etadi — haftasiga 3 marta, har biri 1,5 soatlik amaliy darslar.',
+    a: 'Toʻliq kompyuter savodxonligi kursi 2 oy davom etadi — haftasiga 3 marta, har biri 1,5 soatlik jonli onlayn darslar.',
   },
   {
     q: 'Yoshim katta, oʻrganishga kech emasmi?',
-    a: 'Yoʻq. Oʻquvchilarimiz orasida 50-60 yoshdagilar ham bor va ular kursni muvaffaqiyatli tugatishmoqda. Darslar sekin sur’atda, takrorlash bilan oʻtiladi.',
+    a: 'Yoʻq. Oʻquvchilarimiz orasida 50-60 yoshdagilar ham bor va ular kursni muvaffaqiyatli tugatishmoqda. Darslar sekin sur’atda, takrorlash bilan oʻtiladi. Zoomga kirishni ham birinchi darsda oʻrgatamiz.',
   },
   {
-    q: 'Dars uchun oʻz kompyuterim boʻlishi shartmi?',
-    a: 'Yoʻq, darsxonada har bir oʻquvchi uchun kompyuter mavjud. Uyda mashq qilish uchun oʻz noutbukingizni olib kelishingiz ham mumkin.',
+    q: 'Kompyuter yoki noutbuk boʻlishi shartmi?',
+    a: 'Ha, amaliyot uchun kompyuter yoki noutbuk kerak — chunki Word va Excelni oʻz qurilmangizda mashq qilasiz. Darsni telefondan kuzatish ham mumkin, lekin natija uchun kompyuterda ishlash tavsiya etiladi.',
   },
   {
-    q: 'Kurs oxirida sertifikat beriladimi?',
-    a: 'Ha. Yakuniy amaliy imtihonni topshirgan har bir oʻquvchiga kompyuter savodxonligi boʻyicha sertifikat topshiriladi.',
-  },
-  {
-    q: 'Darslar qayerda oʻtiladi?',
-    a: 'Darslar Toshkent shahrida oʻtiladi. Shuningdek onlayn (Zoom orqali) guruhlar ham mavjud — viloyatlardan turib ham oʻqishingiz mumkin.',
+    q: 'Viloyatda yashayman, qatnasha olamanmi?',
+    a: 'Ha. Kurs Oʻzbekistonning istalgan hududidan, hatto chet eldan ham ochiq. Internet va kompyuter boʻlsa yetarli.',
   },
   {
     q: 'Darsni qoldirsam, mavzu yoʻqolib ketadimi?',
-    a: 'Yoʻq. Qoldirilgan mavzuni boshqa guruh bilan bepul qayta oʻtish yoki ustoz bilan alohida koʻrib chiqish imkoniyati bor.',
+    a: 'Yoʻq. Har bir dars yozib olinadi va guruh Telegram kanalida joylanadi — istalgan vaqtda koʻrib, mavzuni oʻzlashtirasiz.',
+  },
+  {
+    q: 'Internetim sekin boʻlsa-chi?',
+    a: 'Darslar oddiy uy internetiga moslangan. Aloqa uzilib qolsa ham, dars yozuvi orqali toʻliq koʻrib chiqasiz.',
+  },
+  {
+    q: 'Kurs oxirida sertifikat beriladimi?',
+    a: 'Ha. Yakuniy amaliy imtihonni topshirgan har bir oʻquvchiga kompyuter savodxonligi boʻyicha elektron sertifikat topshiriladi.',
   },
   {
     q: 'Birinchi dars haqiqatan bepulmi?',
-    a: 'Ha, birinchi sinov darsi mutlaqo bepul. Darsda qatnashib, uslub sizga mos kelishini koʻrganingizdan keyin qaror qabul qilasiz.',
+    a: 'Ha, birinchi sinov darsi mutlaqo bepul. Zoom havolasini olasiz, darsda qatnashasiz va uslub sizga mos kelishini koʻrganingizdan keyin qaror qabul qilasiz.',
   },
 ] as const
 
@@ -281,7 +239,6 @@ export const NAV_LINKS = [
   { id: 'about', label: 'Ustoz haqida' },
   { id: 'courses', label: 'Kurslar' },
   { id: 'benefits', label: 'Afzalliklar' },
-  { id: 'pricing', label: 'Narxlar' },
   { id: 'testimonials', label: 'Fikrlar' },
   { id: 'faq', label: 'Savollar' },
   { id: 'contact', label: 'Aloqa' },

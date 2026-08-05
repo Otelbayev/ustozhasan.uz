@@ -1,4 +1,4 @@
-import { Clock, Instagram, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { Clock, Globe, Instagram, MessageCircle, Phone, Video } from 'lucide-react'
 import { SITE } from '@/data/site'
 
 export default function Contact() {
@@ -52,13 +52,17 @@ export default function Contact() {
           </a>
         </div>
 
-        <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+        <div className="mt-12 flex flex-col sm:flex-row flex-wrap justify-center gap-4">
           <div className="inline-flex items-center justify-center gap-2 bg-blue-50 px-6 py-3 rounded-xl">
-            <MapPin className="w-5 h-5 text-blue-600" />
-            <span className="text-gray-700">{SITE.city} (onlayn guruhlar ham mavjud)</span>
+            <Video className="w-5 h-5 text-blue-600 flex-shrink-0" />
+            <span className="text-gray-700">{SITE.format}</span>
           </div>
           <div className="inline-flex items-center justify-center gap-2 bg-blue-50 px-6 py-3 rounded-xl">
-            <Clock className="w-5 h-5 text-blue-600" />
+            <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+            <span className="text-gray-700">{SITE.area} — istalgan hududdan</span>
+          </div>
+          <div className="inline-flex items-center justify-center gap-2 bg-blue-50 px-6 py-3 rounded-xl">
+            <Clock className="w-5 h-5 text-blue-600 flex-shrink-0" />
             <span className="text-gray-700">Dushanba - Shanba, 09:00 - 21:00</span>
           </div>
         </div>
