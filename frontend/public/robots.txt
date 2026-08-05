@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+Host: https://ustozhasan.uz
+
+Sitemap: https://ustozhasan.uz/sitemap.xml

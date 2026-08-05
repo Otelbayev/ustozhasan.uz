@@ -1,0 +1,24 @@
+{
+  "name": "Ustoz Hasan - Kompyuter Savodxonligi Kurslari",
+  "short_name": "Ustoz Hasan",
+  "description": "Hasan Abdullayev bilan kompyuter savodxonligi kurslari: Word, Excel, PowerPoint va internet xavfsizligi.",
+  "lang": "uz",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/ustoz-hasan-kompyuter-kurslari-toshkent.jpg",
+      "sizes": "640x640",
+      "type": "image/jpeg"
+    }
+  ]
+}
