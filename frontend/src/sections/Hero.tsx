@@ -54,7 +54,15 @@ export default function Hero() {
               </span>
             </div>
 
+            {/*
+              H1 — sahifadagi eng kuchli SEO signali. Shuning uchun ustozning ismi
+              aynan shu sarlavha ichida turadi: "Hasan Abdullayev" deb qidirilganda
+              Google sahifani shu ism bilan bogʻlaydi.
+            */}
             <h1 className="text-3xl sm:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
+              <span className="block text-lg sm:text-2xl font-semibold text-blue-200 mb-2">
+                {SITE.teacher} bilan
+              </span>
               Onlayn Kompyuter Savodxonligi
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 0 dan Professionalgacha
@@ -62,7 +70,8 @@ export default function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg text-white/80 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              {SITE.teacher} bilan Word, Excel, PowerPoint va internet xavfsizligini 2 oyda oʻrganing.
+              <strong className="font-semibold text-white">{SITE.teacher}</strong> — {SITE.role.toLowerCase()}.
+              Men bilan Word, Excel, PowerPoint va internet xavfsizligini 2 oyda oʻrganing.
               Darslar Zoom orqali jonli oʻtadi — {SITE.area}, uydan chiqmasdan.
             </p>
 

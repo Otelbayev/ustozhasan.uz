@@ -4,11 +4,21 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ustozhasan.uz/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="uz" href="https://ustozhasan.uz/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ustozhasan.uz/" />
+    <image:image>
+      <image:loc>https://ustozhasan.uz/images/hasan-abdullayev-ustoz-hasan-og.jpg</image:loc>
+      <image:title>Hasan Abdullayev (Ustoz Hasan) - kompyuter savodxonligi o'qituvchisi</image:title>
+      <image:caption>Hasan Abdullayev - onlayn kompyuter savodxonligi kurslari: Word, Excel, PowerPoint. ustozhasan.uz</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ustozhasan.uz/images/hasan-abdullayev-ustoz-hasan-kvadrat.jpg</image:loc>
+      <image:title>Hasan Abdullayev - Ustoz Hasan</image:title>
+      <image:caption>Hasan Abdullayev (Ustoz Hasan) - onlayn kompyuter savodxonligi o'qituvchisi, O'zbekiston</image:caption>
+    </image:image>
     <image:image>
       <image:loc>https://ustozhasan.uz/images/hasan-abdullayev-kompyuter-savodxonligi-oqituvchisi.jpg</image:loc>
       <image:title>Hasan Abdullayev - kompyuter savodxonligi o'qituvchisi</image:title>

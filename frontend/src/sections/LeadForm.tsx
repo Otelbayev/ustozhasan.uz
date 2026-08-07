@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { COURSES, SITE } from '@/data/site'
-import { sendLeadToTelegram, telegramFallbackLink, type Lead } from '@/lib/telegram'
+import { sendLead, telegramFallbackLink, type Lead } from '@/lib/telegram'
 
 const TIMES = ['Ertalab (09:00-12:00)', 'Kunduzi (13:00-17:00)', 'Kechqurun (18:00-21:00)', 'Farqi yoʻq']
 
@@ -43,7 +43,7 @@ export default function LeadForm() {
     setSending(true)
 
     try {
-      await sendLeadToTelegram(lead)
+      await sendLead(lead)
       setSent(true)
       setFallback('')
     } catch {

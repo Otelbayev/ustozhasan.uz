@@ -9,10 +9,21 @@ export default function NotFound() {
     meta.name = 'robots'
     meta.content = 'noindex, follow'
     document.head.appendChild(meta)
+
     const prevTitle = document.title
-    document.title = 'Sahifa topilmadi | Ustoz Hasan'
+    document.title = 'Sahifa topilmadi | Hasan Abdullayev (Ustoz Hasan)'
+
+    /*
+      index.html dagi canonical bosh sahifaga ishora qiladi. 404 sahifada u
+      qolib ketsa, Google bu sahifani bosh sahifaning nusxasi deb hisoblaydi.
+      Shuning uchun canonical shu sahifa ochiq turgan vaqtda vaqtincha olib turiladi.
+    */
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    canonical?.remove()
+
     return () => {
-      document.head.removeChild(meta)
+      meta.remove()
+      if (canonical) document.head.appendChild(canonical)
       document.title = prevTitle
     }
   }, [])

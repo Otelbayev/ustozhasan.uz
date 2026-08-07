@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { SITE } from '@/data/site'
-import { sendLeadToTelegram, telegramFallbackLink, type Lead } from '@/lib/telegram'
+import { sendLead, telegramFallbackLink, type Lead } from '@/lib/telegram'
 
 /** Hero bo'limidagi qisqa ariza formasi: faqat F.I.SH. va telefon */
 export default function HeroForm() {
@@ -38,7 +38,7 @@ export default function HeroForm() {
     setSending(true)
 
     try {
-      await sendLeadToTelegram(lead)
+      await sendLead(lead)
       setSent(true)
       setFallback('')
     } catch {
