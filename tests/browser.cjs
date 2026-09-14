@@ -19,10 +19,12 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   });
 
   await page.goto(`${BASE}/?utm_source=instagram&utm_campaign=course`);
-  // Hero order on mobile: image above title above button, all in the first viewport.
+  // Hero order on mobile: image above title above button; the portrait is shown whole, not cropped.
   const [img, h1, cta] = await Promise.all(['.hero-img', '#hero-title', '.hero-copy .btn'].map(s => page.locator(s).boundingBox()));
   assert.ok(img.y < h1.y && h1.y < cta.y, 'hero order');
-  assert.ok(cta.y + cta.height <= 844, `hero CTA above the fold (${cta.y + cta.height})`);
+  await page.waitForFunction(() => document.querySelector('.hero-img').naturalWidth > 0);
+  const ratio = await page.locator('.hero-img').evaluate(el => (el.naturalWidth / el.naturalHeight) / (el.clientWidth / el.clientHeight));
+  assert.ok(Math.abs(ratio - 1) < 0.02, `hero image not cropped (${ratio})`);
 
   await page.evaluate(() => { window.LEAD_CONFIG = {endpoint: 'https://script.google.com/macros/s/test/exec'}; });
   await page.locator('.hero-copy').getByRole('button', {name: 'Kursga yozilish'}).click();
@@ -85,6 +87,6 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   assert.equal(await page.locator('main > section').count(), 3, 'only hero, programs and form sections');
   assert.equal(await page.locator('.header nav').count(), 0, 'no header menu');
   assert.deepEqual(errors, []);
-  console.log('PASS: hero order/fold, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, failure stays on form, safe retry ID, 302 redirect, plan, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
+  console.log('PASS: hero order + uncropped portrait, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, failure stays on form, safe retry ID, 302 redirect, plan, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
   await browser.close();
 })().catch(e => { console.error(e); process.exit(1); });
