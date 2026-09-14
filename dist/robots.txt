@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /thank-you.html
 
-Sitemap: https://ustozhasan.uz/sitemap.xml
+Sitemap: https://www.ustozhasan.uz/sitemap.xml

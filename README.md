@@ -18,3 +18,7 @@ Google Sheets ulanishi: [yo‘riqnoma](integration/ULASH.md). `dist/config.js` e
 ## Tekshiruv
 - `node --test tests/phone.test.mjs tests/apps-script.test.mjs`
 - Brauzer testi (Google javobi mock): server ishga tushirilgach `node tests/browser.cjs` (`PLAYWRIGHT_PATH`, `BASE_URL` env bilan sozlanadi)
+
+## Google va Yandex SEO
+
+Asosiy canonical domen: `https://www.ustozhasan.uz/`. Google tasdiqlash metategi qo‘shilgan; deploydan keyin egalikni tasdiqlash va sitemap yuborish kerak. Akkauntlar holati va barcha qadamlar: [SEO yo‘riqnomasi](integration/SEO.md).
