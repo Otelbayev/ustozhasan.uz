@@ -78,7 +78,7 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `overflow ${path} @${width}`);
     }
   }
-  for (const path of ['/favicon.ico', '/favicon.svg', '/apple-touch-icon.png', '/site.webmanifest', '/robots.txt', '/sitemap.xml', '/og-image.jpg', '/assets/icons/canva.svg']) {
+  for (const path of ['/favicon.ico', '/favicon.svg', '/apple-touch-icon.png', '/site.webmanifest', '/robots.txt', '/sitemap.xml', '/og-image.jpg', '/assets/icons/canva.svg', '/assets/icons/google-docs.svg', '/assets/icons/google-sheets.svg', '/assets/hasan-avatar.avif']) {
     assert.equal((await page.request.get(BASE + path)).status(), 200, path);
   }
   assert.deepEqual(errors, []);
