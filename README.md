@@ -5,7 +5,7 @@ Frameworksiz HTML, CSS, JavaScript. `dist/` — saytning tayyor fayllari (build 
 Mahalliy preview: `python3 -m http.server 4173 --directory dist`
 
 ## Tuzilma
-- `dist/index.html` — varonka sahifa: hero (Kompyuter savodxonligi 1.0) → kurs dasturlari → ariza formasi
+- `dist/index.html` — varonka sahifa: hero (Kompyuter savodxonligi 1.0) → kurs modullari (taqdimot asosida) → ariza formasi
 - `dist/style.css` — yagona uslublar fayli (thank-you sahifasi ham)
 - `dist/app.js` — modal, scroll animatsiyalar, ariza yuborish
 - `dist/phone.js` — qat'iy `+998 XX XXX XX XX` telefon maskasi
