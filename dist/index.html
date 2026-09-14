@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover"
+      content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content"
     />
     <title>
       Kompyuter savodxonligi 1.0 — Ustoz Hasan | Word, Excel, AI noldan
@@ -64,6 +64,7 @@
       imagesizes="(min-width:900px) 460px, 100vw"
       fetchpriority="high"
     />
+    <link rel="preload" href="/assets/fonts/montserrat-800-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/style.css" />
     <script>
       document.documentElement.classList.add("js");
@@ -306,16 +307,6 @@
               </li>
               <li style="--i: 4">
                 <img
-                  src="/assets/icons3d/google-docs.webp"
-                  width="80"
-                  height="80"
-                  decoding="async"
-                  alt="Google Docs"
-                  title="Google Docs"
-                />
-              </li>
-              <li style="--i: 5">
-                <img
                   src="/assets/icons3d/chatgpt.webp"
                   width="80"
                   height="80"
@@ -337,12 +328,10 @@
                   >1.0<i class="caret" aria-hidden="true"></i></span
               ></span>
             </h1>
-            <p class="hero-desc">
-              Yoqish tugmasidan mustaqil ishlashgacha. Word, Excel, PowerPoint,
-              Google ilovalari, Canva va sun’iy intellektni amaliy topshiriqlar
-              bilan o‘rganasiz. Onlayn, o‘zbek tilida. Oldindan bilim kerak
-              emas.
-            </p>
+            <div class="hero-desc">
+              <p>Men — Ustoz Hasan, kompyuter savodxonligi bo‘yicha 2,5 yillik tajribaga ega o‘qituvchiman. Shu vaqtgacha 1000 dan ortiq o‘quvchiga bilim berganman.</p>
+              <p>Ushbu kursda siz kompyuterni yoqishdan boshlab, unda mustaqil ishlashgacha bo‘lgan zarur bilimlarni o‘rganasiz. Word, Excel, PowerPoint, Google xizmatlari, Canva va sun’iy intellektni amaliy topshiriqlar orqali o‘zlashtirasiz. Darslar onlayn va o‘zbek tilida olib boriladi. Oldindan bilimga ega bo‘lishingiz shart emas.</p>
+            </div>
             <button
               class="btn btn-lg btn-shine hero-cta"
               type="button"
@@ -642,10 +631,8 @@
       >
         <div class="wrap cta-grid">
           <div class="cta-copy reveal">
-            <h2 id="cta-title">
-              Birinchi qadam: <span class="accent">birgina ariza</span>
-            </h2>
-            <p class="lead">Raqamingizni qoldiring. O‘zimiz bog‘lanamiz.</p>
+            <h2 id="cta-title">Birinchi qadamni <span class="accent">tashlang!</span></h2>
+            <p class="lead">Telefon raqamingizni qoldiring — siz bilan bog‘lanib, kurs haqida batafsil ma’lumot beramiz.</p>
             <div class="contacts">
               <a class="contact-link" href="tel:+998933055635"
                 ><svg class="i" aria-hidden="true"><use href="#i-phone" /></svg

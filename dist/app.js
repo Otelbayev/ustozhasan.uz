@@ -40,6 +40,51 @@ if (sticky && 'IntersectionObserver' in window) {
 
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
+// On-screen keyboard: keep the focused field and the submit button visible.
+// Chrome on Android resizes the layout viewport (interactive-widget=resizes-content);
+// iOS Safari and other browsers only shrink the visual viewport, so expose its height.
+const root = document.documentElement;
+const vv = window.visualViewport;
+if (vv) {
+  const syncKeyboard = () => {
+    const kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+    root.style.setProperty('--kb', `${kb}px`);
+  };
+  vv.addEventListener('resize', syncKeyboard);
+  vv.addEventListener('scroll', syncKeyboard);
+}
+let revealTimer;
+const revealForm = field => {
+  clearTimeout(revealTimer);
+  // Wait for the keyboard animation, then scroll the rest of the form into view.
+  revealTimer = setTimeout(() => {
+    if (document.activeElement !== field) return;
+    const submit = field.form?.querySelector('[type=submit]') || field;
+    const view = vv ? vv.height : window.innerHeight;
+    const inDialog = field.closest('dialog');
+    const scroller = inDialog || document.scrollingElement;
+    const top = inDialog ? inDialog.getBoundingClientRect().top : header.getBoundingClientRect().bottom;
+    const bottom = inDialog ? Math.min(inDialog.getBoundingClientRect().bottom, view) : view;
+    // One scroll that brings the submit button above the keyboard without pushing the field under the header.
+    const need = submit.getBoundingClientRect().bottom + 12 - bottom;
+    const room = field.getBoundingClientRect().top - 12 - top;
+    const delta = need > 0 ? Math.min(need, Math.max(0, room)) : Math.min(0, room);
+    if (delta) scroller.scrollBy({ top: delta, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }, 350);
+};
+// While typing, the sticky CTA would sit right above the keyboard and cover the form.
+document.addEventListener('focusin', event => {
+  if (!event.target.matches?.('.lead-form input')) return;
+  root.classList.add('is-typing');
+  revealForm(event.target);
+});
+document.addEventListener('focusout', event => {
+  if (event.target.matches?.('.lead-form input')) setTimeout(() => { if (!document.activeElement?.matches('.lead-form input')) root.classList.remove('is-typing'); }, 100);
+});
+vv?.addEventListener('resize', () => {
+  if (document.activeElement?.matches('.lead-form input')) revealForm(document.activeElement);
+});
+
 // Enrollment dialog
 const dialog = document.querySelector('#enroll-dialog');
 const modalTitle = dialog.querySelector('#modal-title');

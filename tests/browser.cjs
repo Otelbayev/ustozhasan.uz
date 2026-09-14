@@ -19,17 +19,43 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   });
 
   await page.goto(`${BASE}/?utm_source=instagram&utm_campaign=course`);
-  // Mobile hero: whole portrait, CTA sits on the image above the app strip and stays in the first screen.
+  // Mobile hero: whole portrait, title then CTA then app strip; CTA stays in the first screen.
   // Let entrance animations settle before measuring layout.
   await page.evaluate(() => Promise.all(document.getAnimations().filter(an => an.effect.getComputedTiming().iterations !== Infinity).map(an => an.finished)));
   const heroCta = page.locator('.hero').getByRole('button', {name: 'Kursga yozilish'});
   const [img, cta, strip, h1] = await Promise.all([page.locator('.hero-img').boundingBox(), heroCta.boundingBox(), page.locator('.hero-apps').boundingBox(), page.locator('#hero-title').boundingBox()]);
-  assert.ok(img.y < cta.y && cta.y + cta.height <= strip.y + 1 && strip.y < h1.y, 'hero order');
+  assert.ok(img.y < h1.y && h1.y + h1.height <= cta.y + 1 && cta.y + cta.height <= strip.y + 1, 'hero order: image, title, CTA, apps');
+  assert.equal(await page.locator('#hero-title').evaluate(el => getComputedStyle(el).fontFamily.split(',')[0].replace(/"/g, '')), 'Montserrat');
   assert.ok(cta.y + cta.height <= 844, `hero CTA above the fold (${cta.y + cta.height})`);
-  assert.equal(await page.locator('.hero-apps li').count(), 6);
+  assert.equal(await page.locator('.hero-apps li').count(), 5);
   await page.waitForFunction(() => document.querySelector('.hero-img').naturalWidth > 0);
   const ratio = await page.locator('.hero-img').evaluate(el => (el.naturalWidth / el.naturalHeight) / (el.clientWidth / el.clientHeight));
   assert.ok(Math.abs(ratio - 1) < 0.02, `hero image not cropped (${ratio})`);
+
+  // Android keyboard (interactive-widget=resizes-content shrinks the viewport): the focused field
+  // and the submit button must stay visible, and the sticky CTA must not cover them.
+  await page.locator('#ariza').scrollIntoViewIfNeeded();
+  await page.locator('#phone').focus();
+  await page.setViewportSize({width: 390, height: 430});
+  await page.waitForTimeout(900);
+  const kb = await page.evaluate(() => {
+    const vis = el => { const r = el.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; };
+    return {input: vis(document.querySelector('#phone')), submit: vis(document.querySelector('#ariza [type=submit]')), sticky: getComputedStyle(document.querySelector('.sticky-cta')).transform};
+  });
+  assert.ok(kb.input && kb.submit, `form visible above keyboard ${JSON.stringify(kb)}`);
+  assert.notEqual(kb.sticky, 'none', 'sticky CTA hidden while typing');
+  await page.locator('#phone').blur();
+  await page.setViewportSize({width: 390, height: 844});
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.locator('.hero').getByRole('button', {name: 'Kursga yozilish'}).click();
+  await page.locator('#enroll-dialog[open]').waitFor();
+  await page.locator('#modal-phone').focus();
+  await page.setViewportSize({width: 390, height: 430});
+  await page.waitForTimeout(900);
+  const modalKb = await page.evaluate(() => { const r = document.querySelector('#enroll-dialog [type=submit]').getBoundingClientRect(); return r.bottom <= innerHeight && r.top >= 0; });
+  assert.ok(modalKb, 'modal submit visible above keyboard');
+  await page.keyboard.press('Escape');
+  await page.setViewportSize({width: 390, height: 844});
 
   await page.evaluate(() => { window.LEAD_CONFIG = {endpoint: 'https://script.google.com/macros/s/test/exec'}; });
   await heroCta.click();
@@ -92,6 +118,6 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   assert.equal(await page.locator('main > section').count(), 3, 'only hero, programs and form sections');
   assert.equal(await page.locator('.header nav').count(), 0, 'no header menu');
   assert.deepEqual(errors, []);
-  console.log('PASS: hero order/fold + uncropped portrait, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, failure stays on form, safe retry ID, 302 redirect, plan, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
+  console.log('PASS: hero order/fold + uncropped portrait, keyboard-safe forms, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, failure stays on form, safe retry ID, 302 redirect, plan, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
   await browser.close();
 })().catch(e => { console.error(e); process.exit(1); });
