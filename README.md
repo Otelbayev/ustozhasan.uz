@@ -5,13 +5,13 @@ Frameworksiz HTML, CSS, JavaScript. `dist/` — saytning tayyor fayllari (build 
 Mahalliy preview: `python3 -m http.server 4173 --directory dist`
 
 ## Tuzilma
-- `dist/index.html` — varonka sahifa (hero → dasturlar → kim uchun → dastur → qadamlar → tariflar → FAQ → ariza)
+- `dist/index.html` — varonka sahifa: hero (Kompyuter savodxonligi 1.0) → kurs dasturlari → ariza formasi
 - `dist/style.css` — yagona uslublar fayli (thank-you sahifasi ham)
 - `dist/app.js` — modal, scroll animatsiyalar, ariza yuborish
 - `dist/phone.js` — qat'iy `+998 XX XXX XX XX` telefon maskasi
 - `dist/config.js` — Google Apps Script endpointi
-- `dist/assets/` — hero rasmlari (AVIF/WebP) va dastur ikonkalari (Word, Excel, PowerPoint, Canva, ChatGPT, Gemini, Claude)
-- SEO: `robots.txt`, `sitemap.xml`, `site.webmanifest`, `og-image.jpg`, favicon to'plami
+- `dist/assets/` — hero rasmlari (AVIF/WebP), `logo.png` va dastur ikonkalari (Word, Excel, PowerPoint, Google Docs, Google Sheets, Canva, ChatGPT, Gemini, Claude)
+- SEO: `robots.txt`, `sitemap.xml`, `site.webmanifest`, `og-image.jpg`, favicon to'plami (logo asosida)
 
 Google Sheets ulanishi: [yo‘riqnoma](integration/ULASH.md). `dist/config.js` endpointi bo‘sh bo‘lsa ariza yuborilmaydi.
 

@@ -25,9 +25,9 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   assert.ok(cta.y + cta.height <= 844, `hero CTA above the fold (${cta.y + cta.height})`);
 
   await page.evaluate(() => { window.LEAD_CONFIG = {endpoint: 'https://script.google.com/macros/s/test/exec'}; });
-  await page.getByRole('button', {name: 'Masterni tanlash'}).click();
+  await page.locator('.hero-copy').getByRole('button', {name: 'Kursga yozilish'}).click();
   await page.locator('#enroll-dialog[open]').waitFor();
-  assert.equal(await page.locator('#modal-title').textContent(), 'Master tarifiga yozilish');
+  assert.equal(await page.locator('#modal-title').textContent(), 'Kursga ariza qoldiring');
   await page.locator('#modal-name').fill('Hasan');
 
   const phone = page.locator('#modal-phone');
@@ -64,7 +64,7 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   await page.waitForURL('**/thank-you.html?submitted=1');
   assert.equal(sent.requestId, id, 'retry reuses request id');
   assert.equal(sent.phone, '+998901234567');
-  assert.equal(sent.plan, 'Master');
+  assert.equal(sent.plan, 'Maslahat');
   assert.equal(sent.consent, true);
   assert.equal(sent.website, '');
   assert.equal(sent.attribution.utm_source, 'instagram');
@@ -78,10 +78,13 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `overflow ${path} @${width}`);
     }
   }
-  for (const path of ['/favicon.ico', '/favicon.svg', '/apple-touch-icon.png', '/site.webmanifest', '/robots.txt', '/sitemap.xml', '/og-image.jpg', '/assets/icons/canva.svg', '/assets/icons/google-docs.svg', '/assets/icons/google-sheets.svg', '/assets/hasan-avatar.avif']) {
+  for (const path of ['/favicon.ico', '/favicon-32.png', '/assets/logo.png', '/icon-512.png', '/apple-touch-icon.png', '/site.webmanifest', '/robots.txt', '/sitemap.xml', '/og-image.jpg', '/assets/icons/canva.svg', '/assets/icons/google-docs.svg', '/assets/icons/google-sheets.svg', '/assets/hero-480.avif']) {
     assert.equal((await page.request.get(BASE + path)).status(), 200, path);
   }
+  await page.goto(BASE + '/');
+  assert.equal(await page.locator('main > section').count(), 3, 'only hero, programs and form sections');
+  assert.equal(await page.locator('.header nav').count(), 0, 'no header menu');
   assert.deepEqual(errors, []);
-  console.log('PASS: hero order/fold, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, failure stays on form, safe retry ID, 302 redirect, tariff, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
+  console.log('PASS: hero order/fold, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, failure stays on form, safe retry ID, 302 redirect, plan, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
   await browser.close();
 })().catch(e => { console.error(e); process.exit(1); });
