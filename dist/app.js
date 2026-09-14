@@ -1,4 +1,7 @@
 import { normalizeUzPhone, formatUzPhone } from './phone.js';
+const visualStyle = document.createElement('link'); visualStyle.rel = 'stylesheet'; visualStyle.href = '/creative.css'; document.head.appendChild(visualStyle);
+const heroCopy = document.querySelector('.hero-copy');
+if (heroCopy) { heroCopy.querySelector('h1').innerHTML = 'Kompyuterni <span class="zero">0 dan</span> o‘rganing.'; heroCopy.querySelector('h1 + p')?.remove(); heroCopy.querySelector('.mini-stats')?.remove(); const cta = heroCopy.querySelector('.button'); if (cta) cta.childNodes[0].textContent = 'Boshlash '; }
 const dialog = document.querySelector('#enroll-dialog');
 let opener;
 document.querySelectorAll('[data-plan]:not(form)').forEach(button => button.addEventListener('click', () => {

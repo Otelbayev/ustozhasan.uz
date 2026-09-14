@@ -4,16 +4,25 @@
  * Execute as: Me. Who has access: Anyone.
  * Put the /exec URL in dist/config.js. Never put Google credentials in HTML.
  */
-const HEADERS = ['Sana (Toshkent)', 'Ariza ID', 'Ism', 'Telefon', 'Tarif', 'UTM source', 'UTM medium', 'UTM campaign', 'UTM content', 'UTM term', 'FB click ID', 'Rozilik'];
+const HEADERS = ['Sana (Toshkent)', 'Ariza ID', 'Ism', 'Telefon', 'Tarif', 'Suhbat statusi'];
 function setup() {
   const ss = SpreadsheetApp.openById('1IqBeYv1DfFbwo6FUNIuY7hJYx5zdfO_DW-WD1lSI0eA');
   if (!ss) throw new Error('Open Apps Script from your Google Sheet.');
   PropertiesService.getScriptProperties().setProperty('SPREADSHEET_ID', ss.getId());
   const sheet = ss.getSheetByName('Leadlar') || ss.insertSheet('Leadlar');
-  if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
+  if (sheet.getMaxColumns() > HEADERS.length) sheet.deleteColumns(HEADERS.length + 1, sheet.getMaxColumns() - HEADERS.length);
+  sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
   sheet.setFrozenRows(1);
   sheet.getRange(1,1,1,HEADERS.length).setFontWeight('bold').setBackground('#24351e').setFontColor('#ffffff');
   sheet.getRange('D:D').setNumberFormat('@');
+  if (sheet.getLastRow() > 1) {
+    const statuses = sheet.getRange(2, 6, sheet.getLastRow() - 1, 1);
+    statuses.setValues(statuses.getValues().map(row => [row[0] || 'Gaplashilmagan']));
+  }
+  const validation = SpreadsheetApp.newDataValidation().requireValueInList(['Gaplashilmagan', 'Gaplashilgan'], true).setAllowInvalid(false).build();
+  sheet.getRange('F2:F').setDataValidation(validation);
+  const green = SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Gaplashilgan').setBackground('#b7e1cd').setFontColor('#146c43').setRanges([sheet.getRange('F2:F')]).build();
+  sheet.setConditionalFormatRules([green]);
 }
 function json_(data) { return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON); }
 function safe_(value, max) {
@@ -40,8 +49,7 @@ function doPost(e) {
       const match = sheet.getRange(2,2,sheet.getLastRow()-1,1).createTextFinder(p.requestId).matchEntireCell(true).findNext();
       if (match) return json_({ok:true,requestId:p.requestId});
     }
-    const a = p.attribution && typeof p.attribution === 'object' ? p.attribution : {};
-    const row = [Utilities.formatDate(new Date(),'Asia/Tashkent','yyyy-MM-dd HH:mm:ss'),p.requestId,safe_(name,80),"'"+p.phone,p.plan,...['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid'].map(k=>safe_(a[k],250)),'Ha'];
+    const row = [Utilities.formatDate(new Date(),'Asia/Tashkent','yyyy-MM-dd HH:mm:ss'),p.requestId,safe_(name,80),"'"+p.phone,p.plan,'Gaplashilmagan'];
     sheet.appendRow(row);
     SpreadsheetApp.flush();
     return json_({ok:true,requestId:p.requestId});
