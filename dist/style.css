@@ -62,16 +62,13 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-media{position:relative;margin-inline:calc(var(--gutter) * -1);animation:heroImg 1.1s var(--ease) both}
 .hero-img{width:100%;height:min(62svh,560px);min-height:360px;object-fit:cover;object-position:50% 12%;-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 98%);mask-image:linear-gradient(to bottom,#000 62%,transparent 98%)}
 .hero-glow{position:absolute;inset:8% 10% 30%;border-radius:50%;background:radial-gradient(closest-side,rgba(101,116,255,.55),transparent);filter:blur(30px);animation:pulse 6s ease-in-out infinite;pointer-events:none}
-.float-icon{position:absolute;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.94);box-shadow:0 14px 30px -10px rgba(0,0,0,.55);animation:pop .7s var(--ease) both,float 5s ease-in-out infinite}
+.float-icon{position:absolute;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 14px 30px -12px rgba(0,0,0,.6);animation:pop .6s calc(.5s + var(--i) * 70ms) var(--ease) both,float 4.8s calc(var(--row) * -600ms) ease-in-out infinite}
 .float-icon img{width:26px;height:26px}
-.f1{left:6%;top:18%;animation-delay:.5s,1.2s}
-.f2{right:7%;top:30%;animation-delay:.62s,0s;--rot:6deg}
-.f3{left:9%;top:52%;animation-delay:.74s,.6s;--rot:-4deg}
-.f4{right:10%;top:62%;animation-delay:.86s,1.8s}
-.f5{right:26%;top:6%;animation-delay:.98s,.9s;--rot:4deg}
-.f6{left:24%;top:4%;animation-delay:1.1s,2.2s}
-.f7{left:4%;top:36%;animation-delay:1.22s,1.5s;--rot:5deg}
-.f8{right:4%;top:46%;animation-delay:1.34s,.3s;--rot:-6deg}
+/* Two mirrored columns bending around the portrait */
+.p1{top:10%;--i:0;--row:0}.p2{top:27%;--i:1;--row:1}.p3{top:44%;--i:2;--row:2}.p4{top:61%;--i:3;--row:3}
+.r.p1{--i:4}.r.p2{--i:5}.r.p3{--i:6}.r.p4{--i:7}
+.l.p1,.l.p4{left:13%}.l.p2,.l.p3{left:5%}
+.r.p1,.r.p4{right:13%}.r.p2,.r.p3{right:5%}
 .hero-copy{position:relative;z-index:2;margin-top:-96px;text-align:center;display:grid;justify-items:center;gap:26px}
 h1{font-size:clamp(2.65rem,11.5vw,5.6rem);font-weight:850;line-height:.98;letter-spacing:-.045em}
 h1 .w{display:inline-block;animation:rise .8s var(--ease) both}
@@ -264,7 +261,7 @@ html.modal-open{overflow:hidden}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 @keyframes heroImg{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:none}}
 @keyframes pop{from{opacity:0;scale:.4}to{opacity:1;scale:1}}
-@keyframes float{0%,100%{transform:translateY(0) rotate(var(--rot,-5deg))}50%{transform:translateY(-10px) rotate(calc(var(--rot,-5deg) * -1))}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes pulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 @keyframes blink{50%{opacity:0}}
 @keyframes shine{0%{transform:translateX(-120%)}35%,100%{transform:translateX(120%)}}
@@ -302,7 +299,9 @@ html.modal-open{overflow:hidden}
   .hero-img{height:auto;min-height:0;aspect-ratio:3/4;max-height:calc(100svh - 140px);object-position:50% 0;--fade:linear-gradient(to bottom,transparent,#000 16%,#000 68%,transparent),linear-gradient(to right,transparent,#000 18%,#000 82%,transparent);-webkit-mask-image:var(--fade);mask-image:var(--fade);-webkit-mask-composite:source-in;mask-composite:intersect}
   .float-icon{width:60px;height:60px;border-radius:18px}
   .float-icon img{width:34px;height:34px}
-  .f1{left:-4%}.f3{left:-6%}.f2{right:-2%}.f4{right:-4%}.f7{left:-2%}.f8{right:-6%}
+  .p1{top:12%}.p2{top:30%}.p3{top:48%}.p4{top:66%}
+  .l.p1,.l.p4{left:4%}.l.p2,.l.p3{left:-5%}
+  .r.p1,.r.p4{right:4%}.r.p2,.r.p3{right:-5%}
   .hero-copy{order:1;margin:0;text-align:left;justify-items:start;gap:36px}
   h1{font-size:clamp(3.8rem,6.4vw,6rem)}
   .hero-copy .btn{width:auto}
