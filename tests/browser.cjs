@@ -85,7 +85,7 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `overflow ${path} @${width}`);
     }
   }
-  for (const path of ['/favicon.ico', '/favicon-32.png', '/assets/logo.png', '/icon-512.png', '/apple-touch-icon.png', '/site.webmanifest', '/robots.txt', '/sitemap.xml', '/og-image.jpg', '/assets/icons/canva.svg', '/assets/icons/google-docs.svg', '/assets/icons/google-sheets.svg', '/assets/hero-480.avif']) {
+  for (const path of ['/favicon.ico', '/favicon-32.png', '/assets/logo.png', '/icon-512.png', '/apple-touch-icon.png', '/site.webmanifest', '/robots.txt', '/sitemap.xml', '/og-image.jpg', '/assets/icons3d/word.webp', '/assets/icons3d/google.webp', '/assets/icons3d/capcut.webp', '/assets/hero-480.avif']) {
     assert.equal((await page.request.get(BASE + path)).status(), 200, path);
   }
   await page.goto(BASE + '/');

@@ -10,7 +10,7 @@ Mahalliy preview: `python3 -m http.server 4173 --directory dist`
 - `dist/app.js` — modal, scroll animatsiyalar, ariza yuborish
 - `dist/phone.js` — qat'iy `+998 XX XXX XX XX` telefon maskasi
 - `dist/config.js` — Google Apps Script endpointi
-- `dist/assets/` — hero rasmlari (AVIF/WebP), `logo.png` va dastur ikonkalari (Word, Excel, PowerPoint, Google Docs, Google Sheets, Canva, ChatGPT, Gemini, Claude)
+- `dist/assets/` — hero rasmlari (AVIF/WebP), `logo.png` va `icons3d/` (prezentatsiyadagi 3D ikonkalar, WebP 256px)
 - SEO: `robots.txt`, `sitemap.xml`, `site.webmanifest`, `og-image.jpg`, favicon to'plami (logo asosida)
 
 Google Sheets ulanishi: [yo‘riqnoma](integration/ULASH.md). `dist/config.js` endpointi bo‘sh bo‘lsa ariza yuborilmaydi.
