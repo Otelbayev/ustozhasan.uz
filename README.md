@@ -1,11 +1,20 @@
-# Ustoz Hasan landing
+# Ustoz Hasan — sotuv sayti
 
-Frameworksiz HTML, CSS, JavaScript. `dist/` ichidagilar saytning tayyor fayllari. Node yoki npm production uchun talab qilinmaydi. Mahalliy preview: `python3 -m http.server 4173 --directory dist`.
+Frameworksiz HTML, CSS, JavaScript. `dist/` — saytning tayyor fayllari (build talab qilinmaydi). Vercel `vercel.json` orqali `dist/` ni joylaydi.
 
-Kurs mazmuni va tariflar `ONLINE KURS TAQDIMOTI.pptx` asosida. Standartda kurator va 8+ jonli dars, Masterda haftasiga 3 kun jonli dars. Taqdimotdagi modullar bo‘yicha dars sonlari o‘zaro mos emas; landingda tariflar slaydidagi 36+ videodars umumiy ko‘rsatkichi ishlatilgan.
+Mahalliy preview: `python3 -m http.server 4173 --directory dist`
 
-Google Sheets ulanishi: [yo‘riqnoma](integration/ULASH.md). `dist/config.js` endpointi bo‘sh bo‘lsa ariza yuborilmaydi. Endpoint va real jadval sinovi yakunlanmaguncha reklama trafikini yubormang.
+## Tuzilma
+- `dist/index.html` — varonka sahifa (hero → dasturlar → kim uchun → dastur → qadamlar → tariflar → FAQ → ariza)
+- `dist/style.css` — yagona uslublar fayli (thank-you sahifasi ham)
+- `dist/app.js` — modal, scroll animatsiyalar, ariza yuborish
+- `dist/phone.js` — qat'iy `+998 XX XXX XX XX` telefon maskasi
+- `dist/config.js` — Google Apps Script endpointi
+- `dist/assets/` — hero rasmlari (AVIF/WebP) va dastur ikonkalari (Word, Excel, PowerPoint, Canva, ChatGPT, Gemini, Claude)
+- SEO: `robots.txt`, `sitemap.xml`, `site.webmanifest`, `og-image.jpg`, favicon to'plami
 
-`ustozhasan.uz` domeniga tayyor `dist/` katalogini joylash yoki DNS orqali hostingga ulash kerak. Domen/DNS bu ishda avtomatik o‘zgartirilmagan.
+Google Sheets ulanishi: [yo‘riqnoma](integration/ULASH.md). `dist/config.js` endpointi bo‘sh bo‘lsa ariza yuborilmaydi.
 
-Tekshiruv: `node --test tests/phone.test.mjs tests/apps-script.test.mjs`.
+## Tekshiruv
+- `node --test tests/phone.test.mjs tests/apps-script.test.mjs`
+- Brauzer testi (Google javobi mock): server ishga tushirilgach `node tests/browser.cjs` (`PLAYWRIGHT_PATH`, `BASE_URL` env bilan sozlanadi)

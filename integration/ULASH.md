@@ -12,7 +12,7 @@ Apps Script kodini o‘zgartirsangiz: Deploy → Manage deployments → Edit →
 
 Jadvalni internetga ochiq ulash shart emas. Jadval egasi nomidan Apps Script yozadi. Public /exec endpoint ariza qabul qiladi; jadvalni o‘qish endpointi mavjud emas. Google Workspace administratori anonim Web App’larni cheklagan bo‘lsa, “Anyone” ochiq bo‘lishi kerak.
 
-Ism, +998 telefon, tarif, Toshkent vaqti, UTM belgilari, fbclid va rozilik yoziladi. Formula kiritish himoyasi, server tekshiruvi va qayta yuborishda bir arizani takror yozmaslik mavjud. Bu SMS tasdiqlash emas: raqam formati tekshiriladi, raqam egasi yoki faol ekani aniqlanmaydi.
+Jadvalga Toshkent vaqti, ariza ID, ism, +998 telefon, tarif va suhbat statusi yoziladi. Sayt UTM belgilari va fbclid'ni ham yuboradi, lekin hozirgi skript ularni jadvalga saqlamaydi. Formula kiritish himoyasi, server tekshiruvi va qayta yuborishda bir arizani takror yozmaslik mavjud. Bu SMS tasdiqlash emas: raqam formati tekshiriladi, raqam egasi yoki faol ekani aniqlanmaydi.
 
 Google yozuvni tasdiqlamasa, sayt xato ko‘rsatadi va rahmat sahifasiga o‘tmaydi. `no-cors` ishlatilmagan: o‘qib bo‘lmaydigan javob muvaffaqiyat hisoblanmaydi. Endpoint hali ulanmagan bo‘lsa, telefon orqali bog‘lanish ko‘rsatiladi.
 
