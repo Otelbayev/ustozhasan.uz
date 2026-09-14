@@ -21,4 +21,4 @@ Google Sheets ulanishi: [yo‘riqnoma](integration/ULASH.md). `dist/config.js` e
 
 ## Google va Yandex SEO
 
-Asosiy canonical domen: `https://www.ustozhasan.uz/`. Google tasdiqlash metategi qo‘shilgan; deploydan keyin egalikni tasdiqlash va sitemap yuborish kerak. Akkauntlar holati va barcha qadamlar: [SEO yo‘riqnomasi](integration/SEO.md).
+Asosiy canonical domen: `https://www.ustozhasan.uz/`. Google Search Console’da egalik tasdiqlangan, sitemap muvaffaqiyatli o‘qilgan (1 sahifa). Akkauntlar holati va barcha qadamlar: [SEO yo‘riqnomasi](integration/SEO.md).

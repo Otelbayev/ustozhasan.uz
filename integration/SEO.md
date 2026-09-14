@@ -12,9 +12,11 @@
 - Vercel uchun `/index.html` → `/` doimiy redirect qo‘shildi.
 - Dizayn, HTML body, CSS, JavaScript va ariza yuborish integratsiyasi o‘zgartirilmadi.
 
-## Google Search Console — deploydan keyin
+## Google Search Console — tasdiqlangan
 
-Akkaunt: **jasurdev1604@gmail.com**. Search Console’da **https://www.ustozhasan.uz/** resursi qo‘shildi; shu akkaunt bergan haqiqiy `google-site-verification` metategi `dist/index.html` ichiga joylandi. Egalik hali tasdiqlanmagan: yangi HTML avval hostingga chiqishi kerak.
+Akkaunt: **jasurdev1604@gmail.com**. Search Console’da **https://www.ustozhasan.uz/** resursi qo‘shildi; shu akkaunt bergan haqiqiy `google-site-verification` metategi `dist/index.html` ichiga joylandi. 2026-09-15 kuni HTML metateg orqali egalik muvaffaqiyatli tasdiqlandi. Jonli bosh sahifa repozitoriydagi HTML bilan bir xil. Search Console sitemap holati: **Muvaffaqiyatli (Успешно)**, aniqlangan sahifalar: **1**. Tekshiruv paytida bosh sahifa **Обнаружена, не проиндексирована** (topilgan, hali indekslanmagan) holatida edi. **Indekslash so‘rovi muvaffaqiyatli yuborildi**: Google URL’ni ustuvor skanerlash navbatiga qo‘shganini tasdiqladi. Bu indeksga kiritilganini anglatmaydi; keyingi qayta ishlash Google tomonida bajariladi.
+
+Kelgusida qayta ulash zarur bo‘lsa:
 
 1. O‘zgarishlarni GitHub’ga yuklang va Vercel production deployment tugashini kuting.
 2. Bosh sahifa manba kodida `google-site-verification` mavjudligini tekshiring.
@@ -54,3 +56,10 @@ SEO texnik imkoniyat yaratadi. Indekslanish, o‘rin, rasm, favicon va qo‘shim
 - [Google noindex va robots.txt](https://developers.google.com/search/docs/crawling-indexing/block-indexing)
 - [Yandex favicon](https://yandex.com/support/webmaster/en/search-results/favicon)
 - [Yandex sitemap](https://yandex.com/support/webmaster/en/indexing-options/sitemap)
+
+## 2026-09-15 tekshiruv natijalari
+
+- Mavjud 9 ta avtomatik telefon/Apps Script testi o‘tdi. Google Sheets yozuvi bu testlarda mock qilinadi.
+- Jonli HTML, canonical, Google verification, JSON-LD va sitemap XML tekshirildi.
+- Logo/favicon/portret/OG rasmlari HTTP 200; rahmat sahifasida `X-Robots-Tag: noindex, follow`; `/index.html` bosh sahifaga redirect; noma’lum URL HTTP 404.
+- Brauzerda kursga yozilish oynasi ochilishi/yopilishi va bo‘sh formaga validatsiya xabari tekshirildi. Haqiqiy ariza yuborilmadi.
