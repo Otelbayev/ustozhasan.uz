@@ -54,6 +54,12 @@
 <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8m-4-4v4"/></symbol>
 <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a2 2 0 1 1-4 0V21a1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 3 14.1H2.8a2 2 0 1 1 0-4H3A1.7 1.7 0 0 0 4.2 7.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 9.9 3V2.8a2 2 0 1 1 4 0V3a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.6 1.1Z"/></symbol>
 <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8M12 8v13M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="4"/><path d="m10 9 5 3-5 3z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4m8-4v4M3 10h18"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19h20"/></symbol>
+<symbol id="i-windows" viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.4v7.1H3zm0 7h7.5v7.1L3 18.5zm8.5-8.3L21 3v8.5h-9.5zm0 8.3H21V21l-9.5-1.3z"/></symbol>
+<symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 4v16M17 4v16M3 9h4m10 0h4M3 15h4m10 0h4"/></symbol>
 <symbol id="i-send" viewBox="0 0 24 24"><path d="m21.5 3.5-19 7.3 6.8 2.5 2.5 6.8 9.7-16.6ZM9.3 13.3l5.4-5.4"/></symbol>
 <symbol id="i-uz" viewBox="0 0 30 20"><rect width="30" height="20" fill="#1eb53a"/><rect width="30" height="13.2" fill="#fff"/><rect width="30" height="6.6" fill="#0099b5"/><rect y="6.3" width="30" height=".6" fill="#ce1126"/><rect y="12.9" width="30" height=".6" fill="#ce1126"/><circle cx="5" cy="3.3" r="2.1" fill="#fff"/><circle cx="5.9" cy="3.3" r="2" fill="#0099b5"/></symbol>
 </svg>
@@ -65,8 +71,8 @@
 <header class="header" data-header>
   <div class="wrap header-inner">
     <a class="brand" href="/" aria-label="Ustoz Hasan — bosh sahifa">
-      <img src="/assets/logo.png" width="46" height="36" alt="">
-      <span>ustoz<b>hasan</b></span>
+      <img src="/assets/logo.png" width="61" height="48" alt="">
+      <span>Ustoz Hasan</span>
     </a>
     <button class="btn btn-sm" type="button" data-plan="Maslahat">Yozilish</button>
   </div>
@@ -82,22 +88,20 @@
           <source type="image/webp" srcset="/assets/hero-480.webp 480w, /assets/hero-720.webp 720w, /assets/hero-998.webp 998w" sizes="(min-width:900px) 460px, 100vw">
           <img class="hero-img" src="/assets/hero-720.webp" width="720" height="960" fetchpriority="high" decoding="async" alt="Hasan Abdullayev — Kompyuter savodxonligi 1.0 kursi ustozi">
         </picture>
+        <button class="btn btn-lg btn-shine hero-cta-mobile" type="button" data-plan="Maslahat">Kursga yozilish <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         <ul class="hero-apps" aria-label="Kursda o‘rganiladigan dasturlar">
-          <li style="--i:0"><img src="/assets/icons/word.svg" width="28" height="28" alt="Word" title="Word"></li>
-          <li style="--i:1"><img src="/assets/icons/excel.svg" width="28" height="28" alt="Excel" title="Excel"></li>
-          <li style="--i:2"><img src="/assets/icons/google-docs.svg" width="28" height="28" alt="Google Docs" title="Google Docs"></li>
-          <li style="--i:3"><img src="/assets/icons/google-sheets.svg" width="28" height="28" alt="Google Sheets" title="Google Sheets"></li>
-          <li style="--i:4"><img src="/assets/icons/canva.svg" width="28" height="28" alt="Canva" title="Canva"></li>
-          <li style="--i:5"><img src="/assets/icons/chatgpt.svg" width="28" height="28" alt="ChatGPT" title="ChatGPT"></li>
-          <li style="--i:6"><img src="/assets/icons/gemini.svg" width="28" height="28" alt="Gemini" title="Gemini"></li>
-          <li style="--i:7"><img src="/assets/icons/claude.svg" width="28" height="28" alt="Claude" title="Claude"></li>
+          <li style="--i:0"><img src="/assets/icons/word.svg" width="36" height="36" alt="Word" title="Word"></li>
+          <li style="--i:1"><img src="/assets/icons/excel.svg" width="36" height="36" alt="Excel" title="Excel"></li>
+          <li style="--i:2"><img src="/assets/icons/powerpoint.svg" width="36" height="36" alt="PowerPoint" title="PowerPoint"></li>
+          <li style="--i:3"><img src="/assets/icons/google-sheets.svg" width="36" height="36" alt="Google Sheets" title="Google Sheets"></li>
+          <li style="--i:4"><img src="/assets/icons/google-docs.svg" width="36" height="36" alt="Google Docs" title="Google Docs"></li>
+          <li style="--i:5"><img src="/assets/icons/chatgpt.svg" width="36" height="36" alt="ChatGPT" title="ChatGPT"></li>
         </ul>
       </div>
       <div class="hero-copy">
-        <p class="course-name"><span class="dot" aria-hidden="true"></span>Kurs 0 dan boshlanadi</p>
-        <h1 id="hero-title"><span class="w">Kompyuter</span> <span class="w">savodxonligi</span> <span class="w accent">1.0<i class="caret" aria-hidden="true"></i></span></h1>
-        <p class="hero-desc">Yoqish tugmasidan mustaqil ishlashgacha. Word, Excel, PowerPoint, Google ilovalari, Canva va sun’iy intellektni amaliy topshiriqlar bilan o‘rganasiz. Onlayn, o‘zbek tilida — oldindan bilim kerak emas.</p>
-        <button class="btn btn-lg btn-shine" type="button" data-plan="Maslahat">Kursga yozilish <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <h1 id="hero-title"><span class="w">Kompyuter</span> <span class="nowrap"><span class="w" style="animation-delay:.12s">savodxonligi</span> <span class="w accent">1.0<i class="caret" aria-hidden="true"></i></span></span></h1>
+        <p class="hero-desc">Yoqish tugmasidan mustaqil ishlashgacha. Word, Excel, PowerPoint, Google ilovalari, Canva va sun’iy intellektni amaliy topshiriqlar bilan o‘rganasiz. Onlayn, o‘zbek tilida. Oldindan bilim kerak emas.</p>
+        <button class="btn btn-lg btn-shine hero-cta" type="button" data-plan="Maslahat">Kursga yozilish <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </div>
     </div>
   </section>
@@ -105,59 +109,66 @@
   <section id="modullar" class="section modules-section" aria-labelledby="modules-title">
     <div class="wrap">
       <div class="modules-head">
-        <div>
-          <p class="eyebrow reveal">Kurs modullari</p>
-          <h2 id="modules-title" class="reveal">0 dan real natijagacha</h2>
-        </div>
-        <ul class="module-stats reveal" aria-label="Kurs ko‘rsatkichlari">
-          <li><b>6</b><span>modul</span></li>
-          <li><b>36</b><span>dars</span></li>
-          <li><b>2</b><span>oy</span></li>
+        <h2 id="modules-title" class="modules-title reveal">Kurs modullari</h2>
+        <ul class="module-stats" aria-label="Kurs ko‘rsatkichlari">
+          <li class="stat reveal" style="--d:0"><span class="stat-icon"><svg class="i" aria-hidden="true"><use href="#i-layers"/></svg></span><b>6</b><span>modul</span></li>
+          <li class="stat reveal" style="--d:1"><span class="stat-icon"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></span><b>36+</b><span>dars</span></li>
+          <li class="stat reveal" style="--d:2"><span class="stat-icon"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg></span><b>2</b><span>oy</span></li>
         </ul>
       </div>
       <ol class="modules">
         <li class="module reveal" style="--d:0">
-          <div class="module-top"><span class="module-num">01</span><span class="module-icons" aria-hidden="true"><span class="mi"><svg class="i" aria-hidden="true"><use href="#i-monitor"/></svg></span></span></div>
+          <div class="module-top"><span class="module-art" aria-hidden="true"><span class="art-tile art-line"><svg class="i"><use href="#i-monitor"/></svg></span></span><span class="module-num" aria-hidden="true">01</span></div>
           <small>1-modul</small>
           <h3>Kompyuterga kirish va internet brauzerlari</h3>
           <p>Fayl va papkalar, klaviatura va tezkor tugmalar, internet brauzerlari, Telegram va internet xavfsizligi.</p>
         </li>
         <li class="module reveal" style="--d:1">
-          <div class="module-top"><span class="module-num">02</span><span class="module-icons" aria-hidden="true"><span class="mi"><img src="/assets/icons/google-docs.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span><span class="mi"><img src="/assets/icons/google-sheets.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span></span></div>
+          <div class="module-top"><span class="module-art" aria-hidden="true"><span class="art-tile"><img src="/assets/icons/google-docs.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span><span class="art-tile"><img src="/assets/icons/google-sheets.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span></span><span class="module-num" aria-hidden="true">02</span></div>
           <small>2-modul</small>
           <h3>Google akkaunt va Google ilovalari</h3>
           <p>Google akkaunt yaratish, Gmail, Drive, Calendar, Meet va Google Translate bilan ishlash.</p>
         </li>
         <li class="module reveal" style="--d:2">
-          <div class="module-top"><span class="module-num">03</span><span class="module-icons" aria-hidden="true"><span class="mi"><img src="/assets/icons/word.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span><span class="mi"><img src="/assets/icons/excel.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span><span class="mi"><img src="/assets/icons/powerpoint.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span></span></div>
+          <div class="module-top"><span class="module-art" aria-hidden="true"><span class="art-tile"><img src="/assets/icons/word.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span><span class="art-tile"><img src="/assets/icons/excel.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span><span class="art-tile"><img src="/assets/icons/powerpoint.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span></span><span class="module-num" aria-hidden="true">03</span></div>
           <small>3-modul</small>
           <h3>Microsoft Office dasturlari</h3>
           <p>Word, Excel, PowerPoint hamda Google Docs va Sheets’da hujjat, jadval va taqdimotlar tayyorlash.</p>
         </li>
         <li class="module reveal" style="--d:0">
-          <div class="module-top"><span class="module-num">04</span><span class="module-icons" aria-hidden="true"><span class="mi"><img src="/assets/icons/canva.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span></span></div>
+          <div class="module-top"><span class="module-art" aria-hidden="true"><span class="art-tile"><img src="/assets/icons/canva.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span></span><span class="module-num" aria-hidden="true">04</span></div>
           <small>4-modul</small>
           <h3>Dizayn va fayllar bilan ishlash</h3>
           <p>Canva’da dizayn qilish, foydali saytlar hamda hujjat va fayl turlari bilan ishlash.</p>
         </li>
         <li class="module reveal" style="--d:1">
-          <div class="module-top"><span class="module-num">05</span><span class="module-icons" aria-hidden="true"><span class="mi"><img src="/assets/icons/chatgpt.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span><span class="mi"><img src="/assets/icons/claude.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span><span class="mi"><img src="/assets/icons/gemini.svg" width="20" height="20" loading="lazy" decoding="async" alt=""></span></span></div>
+          <div class="module-top"><span class="module-art" aria-hidden="true"><span class="art-tile"><img src="/assets/icons/chatgpt.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span><span class="art-tile"><img src="/assets/icons/claude.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span><span class="art-tile"><img src="/assets/icons/gemini.svg" width="26" height="26" loading="lazy" decoding="async" alt=""></span></span><span class="module-num" aria-hidden="true">05</span></div>
           <small>5-modul</small>
           <h3>Sun’iy intellektdan samarali foydalanish</h3>
           <p>ChatGPT, Claude va Gemini: to‘g‘ri prompt, rasm va videolar, taqdimotlar va ishlarni avtomatlashtirish.</p>
         </li>
         <li class="module reveal" style="--d:2">
-          <div class="module-top"><span class="module-num">06</span><span class="module-icons" aria-hidden="true"><span class="mi"><svg class="i" aria-hidden="true"><use href="#i-settings"/></svg></span></span></div>
+          <div class="module-top"><span class="module-art" aria-hidden="true"><span class="art-tile art-line"><svg class="i"><use href="#i-settings"/></svg></span></span><span class="module-num" aria-hidden="true">06</span></div>
           <small>6-modul</small>
           <h3>Kompyuterga texnik xizmat ko‘rsatish</h3>
           <p>Kompyuterning muhim sozlamalari, Office dasturlarini o‘rnatish va davlat xizmatlaridan onlayn foydalanish.</p>
         </li>
       </ol>
       <div class="bonus reveal">
-        <span class="bonus-icon"><svg class="i" aria-hidden="true"><use href="#i-gift"/></svg></span>
-        <div>
-          <b>Bonus video darsliklar</b>
-          <ul class="bonus-list"><li>Kompyuter sotib olish</li><li>Kompyuterga Windows o‘rnatish</li><li>CapCut dasturida montaj qilish</li></ul>
+        <div class="bonus-inner">
+          <div class="bonus-head">
+            <span class="bonus-icon"><svg class="i" aria-hidden="true"><use href="#i-gift"/></svg></span>
+            <div>
+              <span class="bonus-tag">Sovg‘a</span>
+              <h3>Bonus video darsliklar</h3>
+              <p>Kurs bilan birga qo‘shimcha 3 ta video darslik</p>
+            </div>
+          </div>
+          <ul class="bonus-items">
+            <li><span class="bi"><svg class="i" aria-hidden="true"><use href="#i-laptop"/></svg></span><div><b>Kompyuter sotib olish</b><small>Video darslik</small></div></li>
+            <li><span class="bi"><svg class="i fill" aria-hidden="true"><use href="#i-windows"/></svg></span><div><b>Kompyuterga Windows o‘rnatish</b><small>Video darslik</small></div></li>
+            <li><span class="bi"><svg class="i" aria-hidden="true"><use href="#i-film"/></svg></span><div><b>CapCut dasturida montaj qilish</b><small>Video darslik</small></div></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -167,7 +178,7 @@
     <div class="wrap cta-grid">
       <div class="cta-copy reveal">
         <p class="eyebrow">Boshlaymizmi?</p>
-        <h2 id="cta-title">Birinchi qadam&nbsp;— <span class="accent">birgina ariza</span></h2>
+        <h2 id="cta-title">Birinchi qadam: <span class="accent">birgina ariza</span></h2>
         <p class="lead">Raqamingizni qoldiring. O‘zimiz bog‘lanamiz.</p>
         <div class="contacts">
           <a class="contact-link" href="tel:+998933055635"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>+998 93 305 56 35</a>
@@ -181,13 +192,11 @@
         </div>
         <div class="field">
           <label for="phone">Telefon raqamingiz</label>
-          <div class="phone-field"><svg class="flag" aria-hidden="true"><use href="#i-uz"/></svg><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="17" aria-describedby="phone-help" required enterkeyhint="send"></div>
-          <small id="phone-help">Faqat O‘zbekiston raqami: +998 XX XXX XX XX</small>
+          <div class="phone-field"><svg class="flag" aria-hidden="true"><use href="#i-uz"/></svg><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="17" required enterkeyhint="send"></div>
         </div>
         <div class="trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn btn-lg btn-block" type="submit">Ariza yuborish <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         <p class="form-status" role="status" aria-live="polite"></p>
-        <p class="consent">Yuborish orqali siz bilan bog‘lanishimizga va ma’lumotlaringizni saqlashga rozilik bildirasiz.</p>
       </form>
     </div>
     <p class="wrap copyright">© <span data-year>2026</span> Ustoz Hasan · Kompyuter savodxonligi 1.0</p>
@@ -201,9 +210,8 @@
 <dialog id="enroll-dialog" aria-labelledby="modal-title">
   <div class="sheet-handle" aria-hidden="true"></div>
   <button class="modal-close" type="button" aria-label="Yopish"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button>
-  <p class="eyebrow">Kompyuter savodxonligi 1.0</p>
   <h2 id="modal-title">Kursga ariza qoldiring</h2>
-  <p class="modal-text">Ma’lumotlaringizni qoldiring — siz bilan bog‘lanamiz.</p>
+  <p class="modal-text">Ma’lumotlaringizni qoldiring. Siz bilan bog‘lanamiz.</p>
   <form class="lead-form" data-plan="Maslahat" novalidate>
     <div class="field">
       <label for="modal-name">Ismingiz</label>
@@ -211,13 +219,11 @@
     </div>
     <div class="field">
       <label for="modal-phone">Telefon raqamingiz</label>
-      <div class="phone-field"><svg class="flag" aria-hidden="true"><use href="#i-uz"/></svg><input id="modal-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="17" aria-describedby="modal-phone-help" required enterkeyhint="send"></div>
-      <small id="modal-phone-help">Faqat O‘zbekiston raqami: +998 XX XXX XX XX</small>
+      <div class="phone-field"><svg class="flag" aria-hidden="true"><use href="#i-uz"/></svg><input id="modal-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="17" required enterkeyhint="send"></div>
     </div>
     <div class="trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
     <button class="btn btn-lg btn-block" type="submit">Ariza yuborish <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
     <p class="form-status" role="status" aria-live="polite"></p>
-    <p class="consent">Yuborish orqali siz bilan bog‘lanishimizga va ma’lumotlaringizni saqlashga rozilik bildirasiz.</p>
   </form>
 </dialog>
 
