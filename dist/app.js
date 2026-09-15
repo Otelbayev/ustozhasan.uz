@@ -1,4 +1,5 @@
 import { UZ_PHONE_RE, attachUzPhoneMask, formatUzPhone, toPayloadPhone } from './phone.js';
+import { createLeadClient } from './lead.js';
 
 const PHONE = '+998 93 305 56 35';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -118,12 +119,18 @@ try {
 
 const NAME_RE = /^[\p{L}\p{M}\s’‘'ʻʼ.-]+$/u;
 const shake = el => { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); };
+let leadStorage;
+try { leadStorage = sessionStorage; } catch {}
+const leads = createLeadClient({ storage: leadStorage });
+const leadForms = [...document.querySelectorAll('.lead-form')];
+let submissionPending = false;
+let releaseSubmission = () => {};
+addEventListener('pageshow', event => { if (event.persisted) releaseSubmission(); });
 
-document.querySelectorAll('.lead-form').forEach(form => {
+leadForms.forEach(form => {
   const { name, phone, website } = form.elements;
   const status = form.querySelector('.form-status');
   const submit = form.querySelector('[type=submit]');
-  let pending = false, requestId = '', lastPayload = '';
 
   const fail = (input, message) => {
     status.textContent = message;
@@ -142,7 +149,8 @@ document.querySelectorAll('.lead-form').forEach(form => {
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (pending) return;
+    if (submissionPending) return;
+    clearTimeout(hintTimer);
     status.textContent = '';
 
     const cleanName = name.value.trim().replace(/\s+/g, ' ');
@@ -162,26 +170,43 @@ document.querySelectorAll('.lead-form').forEach(form => {
       return fail(null, `Ariza xizmati hozircha ulanmagan. Iltimos, ${PHONE} raqamiga qo‘ng‘iroq qiling.`);
     }
 
-    const payloadKey = JSON.stringify([cleanName, normalized, form.dataset.plan]);
-    if (payloadKey !== lastPayload) { requestId = crypto.randomUUID(); lastPayload = payloadKey; }
-    const payload = { requestId, name: cleanName, phone: normalized, plan: form.dataset.plan, website: website.value, consent: true, attribution };
+    const payload = { name: cleanName, phone: normalized, plan: form.dataset.plan, website: website.value, consent: true, attribution };
 
-    pending = true; submit.disabled = true; submit.setAttribute('aria-busy', 'true');
+    submissionPending = true;
+    const buttons = leadForms.map(f => f.querySelector('[type=submit]'));
+    const disabledBefore = buttons.map(button => button.disabled);
+    releaseSubmission = () => {
+      submissionPending = false;
+      buttons.forEach((button, index) => { button.disabled = disabledBefore[index]; });
+    };
+    buttons.forEach(button => { button.disabled = true; });
+    submit.setAttribute('aria-busy', 'true');
     const previous = submit.innerHTML; submit.textContent = 'Yuborilmoqda…';
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 25000);
+    let saved = false;
     try {
-      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), signal: controller.signal, credentials: 'omit', redirect: 'manual', mode: 'cors' });
-      // Apps Script answers with a cross-origin 302 to a short-lived googleusercontent URL.
-      // A manual redirect is opaque but means the POST reached the Web App; following it
-      // would turn the POST into a GET in some browsers and lose the lead.
-      if (response.type !== 'opaqueredirect' && !response.ok) throw new Error('HTTP');
+      await leads.send(endpoint, payload);
+      saved = true;
+      clearTimeout(hintTimer);
+      form.reset();
+      for (const input of [name, phone]) input.removeAttribute('aria-invalid');
+      status.textContent = 'Rahmat! Arizangiz qabul qilindi.';
       try { sessionStorage.setItem('ustoz-lead-success', String(Date.now())); } catch {}
       location.assign('/thank-you.html?submitted=1');
-    } catch {
-      fail(null, `Ariza yuborilmadi. Internetni tekshirib, qayta urinib ko‘ring yoki ${PHONE} raqamiga qo‘ng‘iroq qiling.`);
+    } catch (error) {
+      if (saved) {
+        console.error('[Ustoz Hasan] Ariza saqlandi, lekin rahmat sahifasini ochib bo‘lmadi.');
+        releaseSubmission();
+        return;
+      }
+      // Log a bounded diagnostic, never the name, phone, endpoint or response body.
+      const code = error?.name === 'AbortError' ? 'timeout' : error?.message;
+      const known = /^(http_\d{3}|invalid_response|request_id_mismatch|invalid_request|validation|not_configured|busy|run_setup|save_failed|submission_busy|timeout)$/;
+      console.error('[Ustoz Hasan] Ariza saqlanganini tasdiqlab bo‘lmadi:', known.test(code) ? code : 'network_error');
+      fail(null, `Ariza yuborilganini tasdiqlab bo‘lmadi. Internetni tekshirib, qayta urinib ko‘ring yoki ${PHONE} raqamiga qo‘ng‘iroq qiling.`);
     } finally {
-      clearTimeout(timeout); pending = false; submit.disabled = false; submit.removeAttribute('aria-busy'); submit.innerHTML = previous;
+      submit.removeAttribute('aria-busy'); submit.innerHTML = previous;
+      // Keep both buttons locked until navigation after success; unlock on failure.
+      if (!saved) releaseSubmission();
     }
   });
 });

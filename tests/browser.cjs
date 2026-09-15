@@ -14,9 +14,11 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   await page.route('https://script.google.com/macros/s/test/exec', async route => {
     requests++; sent = route.request().postDataJSON();
     if (fail) return route.fulfill({status: 500, headers: {'Access-Control-Allow-Origin': '*'}, body: 'error'});
-    // Real Apps Script answers with a 302 to googleusercontent.
+    // Real Apps Script redirects to a URL containing doPost's JSON acknowledgment.
     await route.fulfill({status: 302, headers: {Location: 'https://script.googleusercontent.com/macros/echo?x=1', 'Access-Control-Allow-Origin': '*'}});
   });
+
+  await page.route('https://script.googleusercontent.com/macros/echo?x=1', route => route.fulfill({status: 200, headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}, body: JSON.stringify({ok: true, requestId: sent.requestId})}));
 
   await page.goto(`${BASE}/?utm_source=instagram&utm_campaign=course`);
   // Mobile hero: whole portrait, title then CTA then app strip; CTA stays in the first screen.
@@ -88,7 +90,7 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
 
   await phone.evaluate(el => { el.value = '+998901234567'; });
   await page.locator('#enroll-dialog').getByRole('button', {name: 'Ariza yuborish'}).click();
-  await page.waitForFunction(() => document.querySelector('dialog .form-status').textContent.includes('yuborilmadi'));
+  await page.waitForFunction(() => document.querySelector('dialog .form-status').textContent.includes('tasdiqlab bo‘lmad'));
   assert.equal(await phone.inputValue(), '+998 90 123 45 67');
   assert.ok(page.url().includes('utm_source'));
 
