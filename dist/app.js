@@ -135,11 +135,12 @@ leadForms.forEach(form => {
   const submit = form.querySelector('[type=submit]');
 
   const fail = (input, message) => {
+    status.classList.remove('is-success');
     status.textContent = message;
     if (input) { input.setAttribute('aria-invalid', 'true'); shake(input); input.focus(); }
   };
 
-  for (const input of [name, phone]) input.addEventListener('input', () => { input.removeAttribute('aria-invalid'); status.textContent = ''; });
+  for (const input of [name, phone]) input.addEventListener('input', () => { input.removeAttribute('aria-invalid'); status.classList.remove('is-success'); status.textContent = ''; });
   let hintTimer;
   attachUzPhoneMask(phone, reason => {
     shake(phone);
@@ -153,6 +154,7 @@ leadForms.forEach(form => {
     event.preventDefault();
     if (submissionPending) return;
     clearTimeout(hintTimer);
+    status.classList.remove('is-success');
     status.textContent = '';
 
     const cleanName = name.value.trim().replace(/\s+/g, ' ');
@@ -192,6 +194,7 @@ leadForms.forEach(form => {
       clearTimeout(hintTimer);
       form.reset();
       for (const input of [name, phone]) input.removeAttribute('aria-invalid');
+      status.classList.add('is-success');
       status.textContent = 'Rahmat! Arizangiz qabul qilindi.';
       try { sessionStorage.setItem('ustoz-lead-success', String(Date.now())); } catch {}
       location.assign('/thank-you.html?submitted=1');
