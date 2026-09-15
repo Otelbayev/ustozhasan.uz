@@ -120,8 +120,10 @@ try {
 const NAME_RE = /^[\p{L}\p{M}\s’‘'ʻʼ.-]+$/u;
 const shake = el => { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); };
 let leadStorage;
-try { leadStorage = sessionStorage; } catch {}
+try { leadStorage = localStorage; } catch { try { leadStorage = sessionStorage; } catch {} }
 const leads = createLeadClient({ storage: leadStorage });
+// Retry any records left by a previous page visit without blocking the current page.
+leads.flush();
 const leadForms = [...document.querySelectorAll('.lead-form')];
 let submissionPending = false;
 let releaseSubmission = () => {};
@@ -147,7 +149,7 @@ leadForms.forEach(form => {
     clearTimeout(hintTimer); hintTimer = setTimeout(() => { status.textContent = ''; }, 3200);
   });
 
-  form.addEventListener('submit', async event => {
+  form.addEventListener('submit', event => {
     event.preventDefault();
     if (submissionPending) return;
     clearTimeout(hintTimer);
@@ -182,10 +184,11 @@ leadForms.forEach(form => {
     buttons.forEach(button => { button.disabled = true; });
     submit.setAttribute('aria-busy', 'true');
     const previous = submit.innerHTML; submit.textContent = 'Yuborilmoqda…';
-    let saved = false;
+    let queued = false;
     try {
-      await leads.send(endpoint, payload);
-      saved = true;
+      // Persist and start the POST, but never await Google's response here.
+      leads.enqueue(endpoint, payload);
+      queued = true;
       clearTimeout(hintTimer);
       form.reset();
       for (const input of [name, phone]) input.removeAttribute('aria-invalid');
@@ -193,8 +196,8 @@ leadForms.forEach(form => {
       try { sessionStorage.setItem('ustoz-lead-success', String(Date.now())); } catch {}
       location.assign('/thank-you.html?submitted=1');
     } catch (error) {
-      if (saved) {
-        console.error('[Ustoz Hasan] Ariza saqlandi, lekin rahmat sahifasini ochib bo‘lmadi.');
+      if (queued) {
+        console.error('[Ustoz Hasan] Ariza navbatga qo‘yildi, lekin rahmat sahifasini ochib bo‘lmadi.');
         releaseSubmission();
         return;
       }
@@ -206,7 +209,7 @@ leadForms.forEach(form => {
     } finally {
       submit.removeAttribute('aria-busy'); submit.innerHTML = previous;
       // Keep both buttons locked until navigation after success; unlock on failure.
-      if (!saved) releaseSubmission();
+      if (!queued) releaseSubmission();
     }
   });
 });

@@ -90,13 +90,15 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
 
   await phone.evaluate(el => { el.value = '+998901234567'; });
   await page.locator('#enroll-dialog').getByRole('button', {name: 'Ariza yuborish'}).click();
-  await page.waitForFunction(() => document.querySelector('dialog .form-status').textContent.includes('tasdiqlab bo‘lmad'));
-  assert.equal(await phone.inputValue(), '+998 90 123 45 67');
-  assert.ok(page.url().includes('utm_source'));
-
-  const id = sent.requestId; fail = false;
-  await page.locator('#enroll-dialog').getByRole('button', {name: 'Ariza yuborish'}).click();
+  // Success is optimistic: the durable outbox is written before navigation while
+  // the failed POST remains queued for a background retry.
+  const id = sent.requestId;
   await page.waitForURL('**/thank-you.html?submitted=1');
+  await page.waitForFunction(() => document.querySelector('h1').textContent === 'Rahmat! Arizangiz qabul qilindi.');
+  fail = false;
+  await page.goto(`${BASE}/`);
+  await page.waitForFunction(() => JSON.parse(localStorage.getItem('ustoz-lead-outbox-v1') || '[]').length === 0);
+  assert.equal(requests, 2, 'queued lead retries in the background');
   assert.equal(sent.requestId, id, 'retry reuses request id');
   assert.equal(sent.phone, '+998901234567');
   assert.equal(sent.plan, 'Maslahat');
@@ -120,6 +122,6 @@ const BASE = process.env.BASE_URL || 'http://localhost:4173';
   assert.equal(await page.locator('main > section').count(), 3, 'only hero, programs and form sections');
   assert.equal(await page.locator('.header nav').count(), 0, 'no header menu');
   assert.deepEqual(errors, []);
-  console.log('PASS: hero order/fold + uncropped portrait, keyboard-safe forms, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, failure stays on form, safe retry ID, 302 redirect, plan, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
+  console.log('PASS: hero order/fold + uncropped portrait, keyboard-safe forms, strict +998 mask (letters, 10th digit, prefix, 0-2 code, foreign paste), silent autofill, immediate optimistic success, durable outbox retry, stable ID, 302 redirect, plan, UTM, thank-you, Telegram URL, no overflow 320-1440, SEO/favicon files. Google responses were mocked.');
   await browser.close();
 })().catch(e => { console.error(e); process.exit(1); });
